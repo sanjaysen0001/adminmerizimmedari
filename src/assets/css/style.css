@@ -1,0 +1,62 @@
+.cssforfaqbuttonsetting{
+    margin-right: 2rem;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #2966ac;
+    height: 2.2rem;
+    width: 6rem;
+    cursor: pointer;
+}
+.cssforfaqtable{
+    background-color: #2966ac;
+    width: 100%;
+    color: white;
+}
+.cssforfaqtable1{
+    background-color: #bacee4;
+}
+.cssforfaqtable th{
+    font-size: 18px;
+    font-weight: 500;
+}
+.cssforfaqtablebody{
+    color: black;
+}
+
+.cssforselectdashboard{
+    border: 1px solid #2966ac;
+    outline: none;
+    width: 90%;
+    color: #2966ac;
+    height: 4rem;
+    font-size: 18px;
+    border-radius: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    
+}
+.cssforselectdashboarddiv{
+    justify-content: center;
+    display: flex;
+}
+.cssfordashboardbutton{
+    border: 1px solid #2966ac;
+    outline: none;
+    width: 90%;
+    color: #2966ac;
+    height: 4rem;
+    font-size: 18px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.cssformanageassetinput::placeholder{
+    font-size: 18px;
+}
+.cssformanageassetinput{
+    font-size: 18px;
+  width:21rem;
+}
+.cssmartopmargin{
+    margin-top: 10px;
+}
