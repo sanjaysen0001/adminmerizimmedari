@@ -138,7 +138,7 @@ import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
@@ -280,12 +280,14 @@ class Duelifedeclaration extends React.Component {
     axiosConfig
       .get("/asset/view-asset")
       .then((response) => {
-        const rowData = response.data.Asset;
-        this.setState({ rowData });
+        // const rowData = response.data.Asset;
+        console.log(response.data);
+        // this.setState({ rowData });
       })
       .catch((err) => {
         swal("Something Went Wrong");
       });
+    
   };
 
   runthisfunction(id) {
@@ -345,7 +347,7 @@ class Duelifedeclaration extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Assets List
+              Due Life Declaration
               </h1>
             </Col>
             <Col className="">
@@ -411,6 +413,7 @@ class Duelifedeclaration extends React.Component {
                       />
                     </div>
                     <div style={{marginRight:'10px'}}>
+                    {/*
                     <Route
                     render={({ history }) => (
                       <Button
@@ -422,6 +425,7 @@ class Duelifedeclaration extends React.Component {
                       </Button>
                     )}
                   />
+                   */}
                     </div>
                     <div>
                       <Button.Ripple

@@ -75,7 +75,7 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-    navLink: "",
+    navLink: "/Managesubscription",
   },
 
   {

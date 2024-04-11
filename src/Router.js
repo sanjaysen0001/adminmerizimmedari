@@ -218,6 +218,9 @@ const managedeathcirtificate = lazy(() =>
 const duelifedeclaration = lazy(() =>
   import("./views/apps/plan/Duelifedeclaration")
 );
+const Managesubscriptionlist = lazy(() =>
+  import("./views/apps/plan/Managesubscripion")
+);
 const AssetList = lazy(() => import("./views/apps/plan/PlanTypeList"));
 const ViewAsset = lazy(() => import("./views/apps/plan/ViewAsset"));
 const AddPlanType = lazy(() => import("./views/apps/plan/AddPlanType"));
@@ -792,6 +795,10 @@ class AppRouter extends React.Component {
             <AppRoute
               path="/duelifedeclaration"
               component={duelifedeclaration}
+            />
+            <AppRoute
+              path="/Managesubscription"
+              component={Managesubscriptionlist}
             />
             <AppRoute path="/app/asset/EditAsset/:id" component={EditAsset} />
             <AppRoute path="/app/asset/ViewAsset/:id" component={ViewAsset} />
