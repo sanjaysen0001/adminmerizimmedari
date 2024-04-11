@@ -11,14 +11,14 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
 } from "reactstrap";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import axiosConfig from "../../../../axiosConfig";
-import { ChevronDown, Edit, Trash2 } from "react-feather";
+import { ChevronDown } from "react-feather";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 class UserList extends React.Component {
   state = {
     rowData: [],

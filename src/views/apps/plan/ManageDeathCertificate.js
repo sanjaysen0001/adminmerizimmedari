@@ -209,7 +209,7 @@
 //                         >
 //                           100
 //                         </DropdownItem>
-//                         <DropdownItem
+//                         <DropdownItem                                
 //                           tag="div"
                           
 //                         >
@@ -288,11 +288,11 @@ import {
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import axiosConfig from "../../../axiosConfig";
-import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
+import { ChevronDown } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
@@ -325,61 +325,9 @@ class Duelifedeclaration extends React.Component {
           return <div className="">{params?.data?.policyIssuersName}</div>;
         },
       },
-      {
-        headerName: "Actions",
-        field: "sortorder",
-        width:200,
-       
-        // pinned: window.innerWidth > 992 ? "right" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="actions cursor-pointer">
-              <Route
-                render={({ history }) => (
-                  <Eye
-                    className="mr-50"
-                    size="25px"
-                    color="green"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/app/asset/ViewAsset/${params?.data?._id}`,
-                        state: params.data,
-                      })
-                    }
-                  />
-                )}
-              />
-              <Route
-                render={({ history }) => (
-                  <Edit
-                    className="mr-50"
-                    size="25px"
-                    color="blue"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/app/asset/EditAsset/${params?.data?._id}`,
-                        state: params.data,
-                      })
-                    }
-                  />
-                )}
-              /> 
-
-              <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  this.runthisfunction(params.data?._id);
-                }}
-              /> 
-            </div>
-          );
-        },
-      },
       
       {
-        headerName: "Phone Number",
+        headerName: "Death Certificate Validation Status",
         field: "PhoneNumber",
         // filter: true,
         width:350,
@@ -423,6 +371,61 @@ class Duelifedeclaration extends React.Component {
       //     return <div className="">{params?.data?.ReEnterPolicyNumber}</div>;
       //   },
       // },
+      
+      {
+        headerName: "Actions",
+        field: "sortorder",
+        width:200,
+       
+      
+        // cellRendererFramework: (params) => {
+
+        //   return (
+        //     <div className="actions cursor-pointer">
+        //       <Route
+        //         render={({ history }) => (
+        //           <Eye
+        //             className="mr-50"
+        //             size="25px"
+        //             color="green"
+        //             onClick={() =>
+        //               history.push({
+        //                 pathname: `/app/asset/ViewAsset/${params?.data?._id}`,
+        //                 state: params.data,
+        //               })
+        //             }
+        //           />
+        //         )}
+        //       />
+        //       <Route
+        //         render={({ history }) => (
+        //           <Edit
+        //             className="mr-50"
+        //             size="25px"
+        //             color="blue"
+        //             onClick={() =>
+        //               history.push({
+        //                 pathname: `/app/asset/EditAsset/${params?.data?._id}`,
+        //                 state: params.data,
+        //               })
+        //             }
+        //           />
+        //         )}
+        //       /> 
+
+        //       <Trash2
+        //         className="mr-50"
+        //         size="25px"
+        //         color="red"
+        //         onClick={() => {
+        //           this.runthisfunction(params.data?._id);
+        //         }}
+        //       /> 
+        //     </div>
+        //   );
+        // },
+      },
+      
     ],
   };
   componentDidMount() {
@@ -497,7 +500,7 @@ class Duelifedeclaration extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Assets List
+              Manage Death Cirtificate
               </h1>
             </Col>
             <Col className="">
@@ -563,6 +566,7 @@ class Duelifedeclaration extends React.Component {
                       />
                     </div>
                     <div style={{marginRight:'10px'}}>
+                    {/*
                     <Route
                     render={({ history }) => (
                       <Button
@@ -574,6 +578,7 @@ class Duelifedeclaration extends React.Component {
                       </Button>
                     )}
                   />
+                   */}
                     </div>
                     <div>
                       <Button.Ripple
