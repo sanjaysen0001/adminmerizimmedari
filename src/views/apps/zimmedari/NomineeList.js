@@ -1,8 +1,10 @@
+
+
 import React from "react";
 import {
   Col,
   Row,
-  Card,
+  Card, 
   Input,
   Button,
   CardBody,
@@ -14,14 +16,15 @@ import {
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import axiosConfig from "../../../axiosConfig";
-import { ChevronDown, Edit, Eye, Trash2, ArrowDownRight } from "react-feather";
+import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 class NomineeList extends React.Component {
   state = {
     rowData: [],
+   
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -36,225 +39,203 @@ class NomineeList extends React.Component {
         headerName: "S.No",
         valueGetter: "node.rowIndex + 1",
         field: "node.rowIndex + 1",
-        width: 100,
+        width:100,
+      
         filter: true,
       },
-      // {
-      //   headerName: "Actions",
-      //   field: "sortorder",
-      //   width: 200,
-      //   // pinned: window.innerWidth > 992 ? "right" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="actions cursor-pointer">
-      //         <Route
-      //           render={({ history }) => (
-      //             <Eye
-      //               className="mr-50"
-      //               size="25px"
-      //               color="green"
-      //               onClick={() =>
-      //                 history.push({
-      //                   pathname: `/app/nominee/ViewNominee/${params.data?._id}`,
-      //                   state: params,
-      //                 })
-      //               }
-      //             />
-      //           )}
-      //         />
-      //         <Route
-      //           render={({ history }) => (
-      //             <Edit
-      //               className="mr-50"
-      //               size="25px"
-      //               color="blue"
-      //               onClick={() =>
-      //                 history.push({
-      //                   pathname: `/app/nominee/EditNominee/${params.data?._id}`,
-      //                   state: params.data,
-      //                 })
-      //               }
-      //             />
-      //           )}
-      //         />
+     
+      {
+        headerName: "User Id",
+        field: "userid",
 
-      //         <Trash2
-      //           className="mr-50"
-      //           size="25px"
-      //           color="red"
-      //           onClick={() => {
-      //             this.runthisfunction(params.data?._id);
-      //           }}
-      //         />
-      //       </div>
-      //     );
-      //   },
-      // },
-      {
-        headerName: "User ID ",
-        field: "name",
-        filter: true,
-        width: 150,
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?._id}</div>;
+          return <div className="">{params?.data?.userId.userId}</div>;
         },
       },
       {
-        headerName: "UserName",
-        field: "name",
-        filter: true,
-        width: 250,
+        headerName: "User Name",
+        field: "username",
+
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.userId.firstName}</div>;
+          return <div className="">{params?.data?.userId.userName}</div>;
         },
       },
       {
-        headerName: "PhoneNumber",
-        field: "PhoneNumber",
-        filter: true,
-        width: 220,
+        headerName: "Phone No.",
+        field: "phoneno",
+
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return (
-            <div className="">
-              {params?.data?.nominee?.map((ele) => ele?.NomineePhoneNumber)}
-            </div>
-          );
+          return <div className="">{params?.data?.userId.mobileNo}</div>;
         },
       },
       {
-        headerName: "Nominee ID",
-        field: "Nominee",
-        filter: true,
-        width: 220,
+        headerName: "Nominee Id",
+        field: "nomineeid",
+
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return (
-            <div className="">
-              {params?.data?.nominee?.map((ele) => ele?._id)}
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Nominee Name",
-        field: "name",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="">
-              {params?.data?.nominee?.map((ele) => ele?.nomineeName)}
-            </div>
-          );
+          return <div className="">{params?.data?.price}</div>;
         },
       },
       {
         headerName: "Relation With Nominee",
-        field: "relationWithNominee",
-        filter: true,
-        width: 200,
+        field: "relationwithnominee",
+
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return (
-            <div className="" style={{ width: "100" }}>
-              {params?.data?.nominee?.map((ele) => ele?.relationWithNominee)}
-            </div>
-          );
+          return <div className="">{params?.data?.price}</div>;
         },
       },
       {
-        headerName: "Nominee PhoneNo",
-        field: "relationWithNominee",
-        filter: true,
-        width: 200,
+        headerName: "Nominee Phone No.",
+        field: "nomineephoneno",
+
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return (
-            <div className="" style={{ width: "100" }}>
-              {params?.data?.nominee?.map((ele) => ele?.relationWithNominee)}
-            </div>
-          );
+          return <div className="">{params?.data?.price}</div>;
         },
       },
       {
-        headerName: "Nominee PhoneNo.Status",
-        field: "relationWithNominee",
-        filter: true,
-        width: 250,
+        headerName: "Nominee Phone No. Status",
+        field: "nomineephonenostatus",
+
+        width:200,
+       
         cellRendererFramework: (params) => {
-          return (
-            <div className="" style={{ width: "100" }}>
-              {params?.data?.nominee?.map((ele) => ele?.relationWithNominee)}
-            </div>
-          );
+          return <div className="">{params?.data?.price}</div>;
         },
       },
       {
         headerName: "Nominee Email",
-        field: "email",
-        filter: true,
-        width: 200,
+        field: "nomineeemail",
+
+        width:200,
+       
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.price}</div>;
+        },
+      },
+      {
+        headerName: "Nominee Email-id Status",
+        field: "nomineeemailidstatus",
+
+        width:200,
+       
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.price}</div>;
+        },
+      },
+     
+      {
+        headerName: "Actions",
+        field: "sortorder",
+        width:200,
+       
+        // pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
-            <div className="">
-              {params?.data?.nominee?.map((ele) => ele?.nomineeEmailId)}
+            <div className="actions cursor-pointer">
+              <Route
+                render={({ history }) => (
+                  <Eye
+                    className="mr-50"
+                    size="25px"
+                    color="green"
+                    onClick={() =>
+                      history.push({
+                        pathname: `/app/view-subscribtion/${params?.data?._id}`,
+                        state: params.data,
+                      })
+                    }
+                  />
+                )}
+              />
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push({
+                        pathname: `/app/Edit-subscribtion/${params?.data?._id}`,
+                        state: params.data,
+                      })
+                    }
+                  />
+                )}
+              /> 
+
+              <Trash2
+                className="mr-50"
+                size="25px"
+                color="red"
+                onClick={() => {
+                  this.runthisfunction(params.data?._id);
+                }}
+              /> 
             </div>
           );
         },
       },
 
+     
       // {
-      //   headerName: "PercentageofShare",
-      //   field: "relationWithNominee",
-      //   filter: true,
-      //   width: 200,
+      //   headerName: "Policy Number",
+      //   field: "PlanType",
+      //   // filter: true,
+      //   width: 180,
       //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="" style={{ width: "100" }}>
-      //         {params?.data?.nominee?.map((ele) => ele?.percentageofShar)}
-      //       </div>
-      //     );
+      //     return <div className="">{params?.data?.policynumber}</div>;
       //   },
       // },
-
       // {
-      //   headerName: "Status",
-      //   field: "status",
-      //   filter: true,
+      //   headerName: "status",
+      //   field: "PlanType",
+      //   // filter: true,
       //   width: 150,
       //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="" style={{ width: "100" }}>
-      //         {params?.data?.status}
-      //       </div>
-      //     );
+      //     return <div className="">{params?.data?.status}</div>;
+      //   },
+      // },
+      // {
+      //   headerName: "ReEnterPolicyNumber",
+      //   field: "reEnterPolicyNumber",
+      //   // filter: true,
+      //   width: 250,
+      //   cellRendererFramework: (params) => {
+      //     return <div className="">{params?.data?.ReEnterPolicyNumber}</div>;
       //   },
       // },
     ],
   };
   componentDidMount() {
-    let AdminId = localStorage.getItem("AdminId");
-    this.NomineeList(AdminId);
+    this.AssetList();
   }
-  NomineeList = (AdminId) => {
-    console.log("adminIDddd", AdminId);
+  AssetList = () => {
     axiosConfig
-      .get(`/asset/nominee-list/${AdminId}`)
+      .get("/asset/nominee-list")
       .then((response) => {
-        console.log(response.data);
-        const rowData = response.data?.Nominee;
-        // let list = rowData?.flatMap((element) => {
-        //   return element?.nominee?.map((val, i) => {
-        //     return { ...element, nominee: val };
-        //   });
-        // });
-        // debugger;
+        const rowData = response.data?.NomineeList;
+        console.log(response.data.NomineeList);
         this.setState({ rowData });
       })
       .catch((err) => {
         swal("Something Went Wrong");
       });
+    
   };
 
   runthisfunction(id) {
-    console.log(id);
     swal(
       `Do You Want To Delete Permanently`,
       "This item will be deleted immediately",
@@ -270,11 +251,9 @@ class NomineeList extends React.Component {
         case "cancel":
           break;
         case "catch":
-          axiosConfig
-            .delete(`/nominee/delete-nominee/${id}`)
-            .then((response) => {
-              this.NomineeList();
-            });
+          axiosConfig.delete(`/asset/delete-asset/${id}`).then((response) => {
+            this.AssetList();
+          });
           break;
         default:
           break;
@@ -313,21 +292,11 @@ class NomineeList extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Nominee List
+              Nominee List
               </h1>
             </Col>
             <Col className="">
-              {/* <Route
-                render={({ history }) => (
-                  <Button
-                    className=" btn  float-right"
-                    color="primary"
-                    onClick={() => history.push("/app/AddAssets")}
-                  >
-                    Add Assets
-                  </Button>
-                )}
-              /> */}
+             
             </Col>
           </Row>
 
@@ -379,16 +348,19 @@ class NomineeList extends React.Component {
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>
-                  <div className="d-flex flex-wrap justify-content-between mb-1">
-                    <div className="table-input mr-1">
+                  <div className="d-flex flex-wrap  mb-1">
+                    <div className="table-input mr-1" >
                       <Input
+                        className="cssformanageassetinput cssmartopmargin"
                         placeholder="search..."
                         onChange={(e) => this.updateSearchQuery(e.target.value)}
                         value={this.state.value}
                       />
                     </div>
-                    <div className="export-btn">
+                   
+                    <div>
                       <Button.Ripple
+                      className='cssmartopmargin'
                         color="primary"
                         onClick={() => this.gridApi.exportDataAsCsv()}
                       >
@@ -425,3 +397,4 @@ class NomineeList extends React.Component {
   }
 }
 export default NomineeList;
+

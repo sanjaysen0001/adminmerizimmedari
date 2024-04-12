@@ -8,6 +8,7 @@ import knowledgeBaseCategory from "./views/pages/knowledge-base/Category";
 import knowledgeBaseQuestion from "./views/pages/knowledge-base/Questions";
 import { ContextLayout } from "./utility/context/Layout";
 import EditAsset from "./views/apps/plan/EditPlanType";
+import Editsubscribtion from "./views/apps/plan/Editsubscribtion";
 
 const listprivacypolicy = lazy(() =>
   import("./views/pages/BusinessPolicy/Listprivacypolicy")
@@ -223,6 +224,7 @@ const Managesubscriptionlist = lazy(() =>
 );
 const AssetList = lazy(() => import("./views/apps/plan/PlanTypeList"));
 const ViewAsset = lazy(() => import("./views/apps/plan/ViewAsset"));
+const Viewsubscribtion=lazy(()=>import("./views/apps/plan/Viewsubscribtion"))
 const AddPlanType = lazy(() => import("./views/apps/plan/AddPlanType"));
 const PolicyTypeList = lazy(() =>
   import("./views/apps/policy/policyType/PolicyTypeList")
@@ -801,7 +803,9 @@ class AppRouter extends React.Component {
               component={Managesubscriptionlist}
             />
             <AppRoute path="/app/asset/EditAsset/:id" component={EditAsset} />
+            <AppRoute path="/app/Edit-subscribtion/:id" component={Editsubscribtion}/>
             <AppRoute path="/app/asset/ViewAsset/:id" component={ViewAsset} />
+            <AppRoute path="/app/view-subscribtion/:id" component={Viewsubscribtion}/>
             <AppRoute path="/app/assets/AsstesList" component={AssetList} />
             <AppRoute
               path="/managedeathcirtificate"

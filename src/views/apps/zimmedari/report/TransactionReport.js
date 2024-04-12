@@ -39,79 +39,109 @@ class TransactionReport extends React.Component {
         width: 100,
         filter: true,
       },
+     
+
       {
-        headerName: "Actions",
-        field: "sortorder",
+        headerName: "User ID",
+        field: "userid",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "User Name",
+        field: "username",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "User Phone Number",
+        field: "userphonenumber",
+        filter: true,
+        width: 250,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "Transaction Date",
+        field: "userphonenumber",
+        filter: true,
         width: 200,
-        // pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
-          return (
-            <div className="actions cursor-pointer">
-              {/* <Route
-                render={({ history }) => (
-                  <Edit
-                    className="mr-50"
-                    size="25px"
-                    color="blue"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/app/plan/EditPlanType/${params.data._id}`,
-                        state: params.data,
-                      })
-                    }
-                  />
-                )}
-              /> */}
-
-              {/* <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  this.runthisfunction(params.data._id);
-                }}
-              /> */}
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Name",
-        field: "name",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.firstName}</div>;
+          return <div className=""></div>;
         },
       },
       {
-        headerName: "Email",
-        field: "email",
+        headerName: "Description",
+        field: "description",
         filter: true,
-        width: 150,
+        width: 200,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.email}</div>;
+          return <div className=""></div>;
         },
       },
       {
-        headerName: "Image",
-        field: "Image",
+        headerName: "Service Period",
+        field: "serviceperiod",
+        filter: true,
+        width: 220,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "Subscription plan",
+        field: "subscriptionplan",
+        filter: true,
+        width: 220,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "Payment method",
+        field: "paymentmethod",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "Subtotal",
+        field: "subtotal",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
-          return (
-            <div className="mainImg">
-              <img
-                className="Picture"
-                style={{ width: "160px" }}
-                src={params?.data?.image}
-                alt="Img"
-              />
-            </div>
-          );
+          return <div className=""></div>;
         },
       },
+      {
+        headerName: "Total",
+        field: "total",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      {
+        headerName: "Download Invoice",
+        field: "downloadinvoice",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return <div className=""></div>;
+        },
+      },
+      
+      
       //   {
       //     headerName: "PlanType Description",
       //     field: "Description",

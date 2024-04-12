@@ -39,79 +39,36 @@ class BusinessReport extends React.Component {
         width: 100,
         filter: true,
       },
-      {
-        headerName: "Actions",
-        field: "sortorder",
-        width: 200,
-        // pinned: window.innerWidth > 992 ? "right" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="actions cursor-pointer">
-              {/* <Route
-                render={({ history }) => (
-                  <Edit
-                    className="mr-50"
-                    size="25px"
-                    color="blue"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/app/plan/EditPlanType/${params.data._id}`,
-                        state: params.data,
-                      })
-                    }
-                  />
-                )}
-              /> */}
-
-              {/* <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  this.runthisfunction(params.data._id);
-                }}
-              /> */}
-            </div>
-          );
-        },
-      },
+      
 
       {
-        headerName: "Name",
-        field: "name",
+        headerName: "Date",
+        field: "date",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.firstName}</div>;
+          return <div className=""></div>;
         },
       },
       {
-        headerName: "Email",
-        field: "email",
+        headerName: "No. of User Registered",
+        field: "noofuserregistered",
         filter: true,
-        width: 150,
+        width: 300,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.email}</div>;
+          return <div className=""></div>;
         },
       },
       {
-        headerName: "Image",
-        field: "Image",
+        headerName: "No. of user subscribe",
+        field: "noofusersubscribe",
         filter: true,
-        width: 150,
+        width: 300,
         cellRendererFramework: (params) => {
-          return (
-            <div className="mainImg">
-              <img
-                className="Picture"
-                style={{ width: "160px" }}
-                src={params?.data?.image}
-                alt="Img"
-              />
-            </div>
-          );
+          return <div className=""></div>;
         },
       },
+      
       //   {
       //     headerName: "PlanType Description",
       //     field: "Description",

@@ -49,7 +49,7 @@ class Managesubscription extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          return <div className="">{params?.data?.planType}</div>;
         },
       },
       {
@@ -59,7 +59,7 @@ class Managesubscription extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          return <div className="">{params?.data?.price}</div>;
         },
       },
      
@@ -80,7 +80,7 @@ class Managesubscription extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push({
-                        pathname: `/app/asset/ViewAsset/${params?.data?._id}`,
+                        pathname: `/app/view-subscribtion/${params?.data?._id}`,
                         state: params.data,
                       })
                     }
@@ -95,7 +95,7 @@ class Managesubscription extends React.Component {
                     color="blue"
                     onClick={() =>
                       history.push({
-                        pathname: `/app/asset/EditAsset/${params?.data?._id}`,
+                        pathname: `/app/Edit-subscribtion/${params?.data?._id}`,
                         state: params.data,
                       })
                     }
@@ -151,11 +151,11 @@ class Managesubscription extends React.Component {
   }
   AssetList = () => {
     axiosConfig
-      .get("/asset/view-asset")
+      .get("/plan/view-plan")
       .then((response) => {
-        // const rowData = response.data.Asset;
-        console.log(response.data);
-        // this.setState({ rowData });
+        const rowData = response.data?.Plan;
+        console.log(response.data?.Plan);
+        this.setState({ rowData });
       })
       .catch((err) => {
         swal("Something Went Wrong");
