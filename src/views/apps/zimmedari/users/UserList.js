@@ -172,7 +172,7 @@ class UserList extends React.Component {
         filter: true,
         width: 230,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.noOfNominee}</div>;
         },
       },
       {
@@ -181,7 +181,7 @@ class UserList extends React.Component {
         filter: true,
         width: 230,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.noOfAssetsType}</div>;
         },
       },
       {
@@ -190,7 +190,7 @@ class UserList extends React.Component {
         filter: true,
         width: 230,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.noOfTotalAssets}</div>;
         },
       },
       {
@@ -199,7 +199,7 @@ class UserList extends React.Component {
         filter: true,
         width: 250,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.noOfConfidentialNote}</div>;
         },
       },
     ],

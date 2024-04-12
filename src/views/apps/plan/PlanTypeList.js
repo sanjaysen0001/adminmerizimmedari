@@ -14,11 +14,11 @@ import {
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import axiosConfig from "../../../axiosConfig";
-import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
+import { ChevronDown, Edit, Trash2 } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 class AssetList extends React.Component {
   state = {
     rowData: [],

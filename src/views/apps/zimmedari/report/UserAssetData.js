@@ -39,15 +39,16 @@ class UserAssetData extends React.Component {
         width: 100,
         filter: true,
       },
+    /* { 
       {
-        headerName: "Actions",
-        field: "sortorder",
+        headerName: "Asset Id",
+        field: "assetid",
         width: 200,
-        // pinned: window.innerWidth > 992 ? "right" : false,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Route
+              <Route
                 render={({ history }) => (
                   <Edit
                     className="mr-50"
@@ -61,57 +62,167 @@ class UserAssetData extends React.Component {
                     }
                   />
                 )}
-              /> */}
+              /> 
 
-              {/* <Trash2
+              <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
                 onClick={() => {
                   this.runthisfunction(params.data._id);
                 }}
-              /> */}
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Name",
-        field: "name",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.firstName}</div>;
-        },
-      },
-      {
-        headerName: "Email",
-        field: "email",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.email}</div>;
-        },
-      },
-      {
-        headerName: "Image",
-        field: "Image",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="mainImg">
-              <img
-                className="Picture"
-                style={{ width: "160px" }}
-                src={params?.data?.image}
-                alt="Img"
               />
             </div>
           );
         },
       },
+       },*/
+
+      {
+        headerName: "Asset Name",
+        field: "assetname",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.assetType}</div>;
+        },
+      },
+      {
+        headerName: "Field 1 Status (Available / Not Available)",
+        field: "field1status",
+        filter: true,
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.Field_1}</div>;
+        },
+      },
+      {
+        headerName: "Field 2",
+        field: "field2status",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.Field_2}</div>;
+        },
+      },
+      {
+        headerName: "Field 3",
+        field: "field3status",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.Field_3}</div>;
+        },
+      },
+      {
+        headerName: "User ID",
+        field: "userid",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.id}</div>;
+        },
+      },
+      {
+        headerName: "User Name",
+        field: "username",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.firstName} {params?.data?.userId?.lastName}</div>;
+        },
+      },
+      {
+        headerName: "User Phone Number",
+        field: "userphonenumber",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.mobileNo} </div>;
+        },
+      },
+      {
+        headerName: "Nominee Id",
+        field: "nomineeid",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.nominee?._id} </div>;
+        },
+      },
+      {
+        headerName: "Nominee Name",
+        field: "nomineename",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.nominee?.nomineeName} </div>;
+        },
+      },
+      {
+        headerName: "Relation with Nominee",
+        field: "relationwithnominee",
+        filter: true,
+        width: 220,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.nominee?.relationWithNominee} </div>;
+        },
+      },
+      {
+        headerName: "Nominee Phone Number",
+        field: "nomineephonenumber",
+        filter: true,
+        width: 240,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.nominee?.NomineePhoneNumber} </div>;
+        },
+      },
+      {
+        headerName: "Nominee Phone Number Verification Status",
+        field: "nomineephonenumberverificationstatus",
+        filter: true,
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.nominee?.mobileVerifyStatus} </div>;
+        },
+      },
+      
+      {
+        headerName: "Nominee email ID",
+        field: "nomineeemailid",
+        filter: true,
+        width: 220,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.nominee?.nomineeEmailId} </div>;
+        },
+      },
+      {
+        headerName: "Nominee Email Verification Status",
+        field: "nomineeemailverificationstatus",
+        filter: true,
+        width: 300,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId?.nominee?.mailVerifyStatus} </div>;
+        },
+      },
+      // {
+      //   headerName: "Image",
+      //   field: "Image",
+      //   filter: true,
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="mainImg">
+      //         <img
+      //           className="Picture"
+      //           style={{ width: "160px" }}
+      //           src={params?.data?.image}
+      //           alt="Img"
+      //         />
+      //       </div>
+      //     );
+      //   },
+      // },
       //   {
       //     headerName: "PlanType Description",
       //     field: "Description",
@@ -134,10 +245,11 @@ class UserAssetData extends React.Component {
   }
   UserAssetData = () => {
     axiosConfig
-      .get("/user-list")
+      .get("/asset/view-asset")
       .then((response) => {
-        // console.log(response.data.User);
-        const rowData = response.data.User;
+        console.log(response.data.Asset);
+       
+        const rowData = response.data.Asset;
         this.setState({ rowData });
       })
       .catch((err) => {
