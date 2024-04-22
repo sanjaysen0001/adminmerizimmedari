@@ -292,6 +292,9 @@ import { ChevronDown } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
+import { BsUpload } from "react-icons/bs";
+import { BsDownload } from "react-icons/bs";
+import axios from "axios"
 // import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
@@ -307,42 +310,46 @@ class Duelifedeclaration extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "User Name",
+        headerName: "S No.",
         valueGetter: "node.rowIndex + 1",
         field: "node.rowIndex + 1",
-        width:200,
+        width:100,
       
         filter: true,
       },
      
       {
         headerName: "Phone Number",
-        field: "PhoneNumber",
+        field: "userId.mobileNo",
         // filter: true,
-        width:200,
+        width:190,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          return <div className="">{params?.data?.userId.mobileNo}</div>;
+        },
+      },
+      {
+        headerName: "User Name",
+        field: "username",
+        
+        width:190,
+       
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.userId.firstName}</div>;
         },
       },
       
       {
         headerName: "Death Certificate Validation Status",
-        field: "PhoneNumber",
+        field: "userStatus",
         // filter: true,
         width:350,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          // console.log(params)
+          return <div className="">{params?.data?.userStatus}</div>;
         },
       },
-
-
-
-
-
-      
-
      
       // {
       //   headerName: "Policy Number",
@@ -353,24 +360,46 @@ class Duelifedeclaration extends React.Component {
       //     return <div className="">{params?.data?.policynumber}</div>;
       //   },
       // },
-      // {
-      //   headerName: "status",
-      //   field: "PlanType",
-      //   // filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return <div className="">{params?.data?.status}</div>;
-      //   },
-      // },
-      // {
-      //   headerName: "ReEnterPolicyNumber",
-      //   field: "reEnterPolicyNumber",
-      //   // filter: true,
-      //   width: 250,
-      //   cellRendererFramework: (params) => {
-      //     return <div className="">{params?.data?.ReEnterPolicyNumber}</div>;
-      //   },
-      // },
+      {
+        headerName: "Policy View",
+        field: "PlanType",
+        // filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          let url= `https://face-auth.merizimmedari.com/Images/${params?.data?.certificate}`
+
+          debugger
+          axios.get(url).then(response => {
+    debugger
+    const contentType = response.headers.get('Content-Type');
+
+    if (contentType.startsWith('image/')) {
+      // Create an image element and append it to the DOM
+      const img = document.createElement('img');
+      img.src = response.url;
+      document.body.appendChild(img);
+    } else if (contentType === 'application/pdf') {
+      // Display PDF using an embed or iframe
+      const embed = document.createElement('embed');
+      embed.src = response.url;
+      embed.type = 'application/pdf';
+      embed.style.width = '100%';
+      embed.style.height = '600px';
+      document.body.appendChild(embed);
+    }
+  })
+  .catch(error => console.error('Error fetching the file:', error));
+
+          
+          // let url= `https://node.rupioo.com/Images/974fb01ea4c1d8aa86d9a9ed45928396`
+          return <div className=""><img src={url} alt="image" height={35} width={45}/>
+          
+          
+          
+          </div>;
+        },
+      },
+      
       
       {
         headerName: "Actions",
@@ -378,52 +407,52 @@ class Duelifedeclaration extends React.Component {
         width:200,
        
       
-        // cellRendererFramework: (params) => {
+        cellRendererFramework: (params) => {
+          const downloadImage = () => {
+            const imageURL = params?.data?.certificate;
+            const link = document.createElement('a');
+            link.href =  imageURL;
+            link.download = 'image.jpg'; 
+            link.click();
+        };
 
-        //   return (
-        //     <div className="actions cursor-pointer">
-        //       <Route
-        //         render={({ history }) => (
-        //           <Eye
-        //             className="mr-50"
-        //             size="25px"
-        //             color="green"
-        //             onClick={() =>
-        //               history.push({
-        //                 pathname: `/app/asset/ViewAsset/${params?.data?._id}`,
-        //                 state: params.data,
-        //               })
-        //             }
-        //           />
-        //         )}
-        //       />
-        //       <Route
-        //         render={({ history }) => (
-        //           <Edit
-        //             className="mr-50"
-        //             size="25px"
-        //             color="blue"
-        //             onClick={() =>
-        //               history.push({
-        //                 pathname: `/app/asset/EditAsset/${params?.data?._id}`,
-        //                 state: params.data,
-        //               })
-        //             }
-        //           />
-        //         )}
-        //       /> 
+        const handleFileUpload = (event) => {
+          const file = event.target.files[0];
+          if (!file) {
+            // swal("Please select a file.");
+            return;
+          }
+        
+          const id =params?.data?. _id ;
+          const formData = new FormData();
+          formData.append('image', file);
+          axiosConfig
+            .put(`/life-declaration/upload-certificate/${id}`, formData)
+            .then((response) => {
+            
+             console.log(response)
+             swal("success","Added Sucessfully","success")
+             this.AssetList();
+            })
+            .catch((error) => {
+             swal("error","error Occured","error")
 
-        //       <Trash2
-        //         className="mr-50"
-        //         size="25px"
-        //         color="red"
-        //         onClick={() => {
-        //           this.runthisfunction(params.data?._id);
-        //         }}
-        //       /> 
-        //     </div>
-        //   );
-        // },
+             console.log(error)
+            });
+        };
+    
+          return (
+            <div className="actions">
+            <label className="btn w-25" style={{ cursor: 'pointer' }}>
+            <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} />
+            <BsUpload/>
+          </label>
+            <button type="download" className="btn w-25" onClick={downloadImage}>
+            <BsDownload/>
+            </button>
+            </div>
+          );
+        },
       },
       
     ],
@@ -433,10 +462,12 @@ class Duelifedeclaration extends React.Component {
   }
   AssetList = () => {
     axiosConfig
-      .get("/asset/view-asset")
+      .get("/life-declaration/view-user-status")
       .then((response) => {
-        const rowData = response.data.Asset;
+        const rowData = response.data.User;
         this.setState({ rowData });
+        console.log(response.data.User);
+
       })
       .catch((err) => {
         swal("Something Went Wrong");
