@@ -81,6 +81,7 @@ class NomineeList extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
+          console.log(params.data)
           return <div className="">{params?.data?.price}</div>;
         },
       },
@@ -91,8 +92,18 @@ class NomineeList extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.price}</div>;
+          return (
+            <div className="">
+              {params.data?.nominee.map((nomi, index) => (
+                <React.Fragment key={index}>
+                  {nomi.relationWithNominee}
+                  {index !== params.data.nominee.length - 1 && ", "}
+                </React.Fragment>
+              ))}
+            </div>
+          );
         },
+        
       },
       {
         headerName: "Nominee Phone No.",
@@ -101,7 +112,16 @@ class NomineeList extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.price}</div>;
+          return (
+            <div className="">
+              {params.data?.nominee.map((nomi, index) => (
+                <React.Fragment key={index}>
+                  {nomi.NomineePhoneNumber}
+                  {index !== params.data.nominee.length - 1 && ", "}
+                </React.Fragment>
+              ))}
+            </div>
+          );
         },
       },
       {
@@ -111,7 +131,7 @@ class NomineeList extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.price}</div>;
+          return <div className="">{params.data?.nominee.map(nomi=> nomi.mobileVerifyStatus)}</div>;
         },
       },
       {
@@ -121,7 +141,10 @@ class NomineeList extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.price}</div>;
+        
+          return <div className="">
+          {params.data?.nominee.map(nomi=>nomi.nomineeEmailId)}
+          </div>;
         },
       },
       {
@@ -131,7 +154,7 @@ class NomineeList extends React.Component {
         width:200,
        
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.price}</div>;
+          return <div className="">{params.data?.nominee.map(nomi=> nomi.mailVerifyStatus)}</div>;
         },
       },
      
@@ -226,7 +249,7 @@ class NomineeList extends React.Component {
       .get("/asset/nominee-list")
       .then((response) => {
         const rowData = response.data?.NomineeList;
-        console.log(response.data.NomineeList);
+        // console.log(response.data.NomineeList);
         this.setState({ rowData });
       })
       .catch((err) => {

@@ -1,128 +1,8 @@
-// import React from 'react'
-// import Table from 'react-bootstrap/Table';
-// import { ChevronDown } from 'react-feather';
-// import {
-//   Col,
-//   Row,
-//   Card,
-//   Input,
-//   Button,
-//   CardBody,
-//   DropdownMenu,
-//   DropdownItem,
-//   DropdownToggle,
-//   UncontrolledDropdown,
-// } from "reactstrap";
-// const Duelifedeclaration = () => {
-//   return (
-//     <>
-//     <Row className="m-1">
-//             <Col>
-//               <h1 col-sm-6 className="float-left">
-//                 Due Life Declaration
-//               </h1>
-//             </Col>
-//             <Col className="">
-             
-//             </Col>
-//           </Row>
-//           <div>
-//           <div className="ag-theme-material w-100 my-2 ag-grid-table">
-//                 <div className="d-flex flex-wrap justify-content-between align-items-center">
-//                   <div className="mb-1">
-//                     <UncontrolledDropdown className="p-1 ag-dropdown">
-//                       <DropdownToggle tag="div">
-//                        1-10
-                    
-//                         <ChevronDown className="ml-50" size={15} />
-//                       </DropdownToggle>
-//                       <DropdownMenu right>
-//                         <DropdownItem
-//                           tag="div"
-                         
-//                         >
-//                           20
-//                         </DropdownItem>
-//                         <DropdownItem
-//                           tag="div"
-                          
-//                         >
-//                           50
-//                         </DropdownItem>
-//                         <DropdownItem
-//                           tag="div"
-                          
-//                         >
-//                           100
-//                         </DropdownItem>
-//                         <DropdownItem
-//                           tag="div"
-                          
-//                         >
-//                           134
-//                         </DropdownItem>
-//                       </DropdownMenu>
-//                     </UncontrolledDropdown>
-//                   </div>
-//                   <div className="d-flex flex-wrap  mb-1">
-//                     <div className="table-input mr-1" >
-//                       <Input
-//                         className="cssformanageassetinput cssmartopmargin"
-//                         placeholder="search..."
-                        
-//                       />
-//                     </div>
-                   
-                   
-//                   </div>
-//                 </div>
-              
-//               </div>
-//           </div>
-//     <div style={{overflow:'auto'}}>
-//     <Table striped bordered hover>
-//     <thead>
-//       <tr className='cssforfaqtable'>
-       
-//         <th style={{width:"20rem",textAlign:'center',paddingTop:'5rem'}}></th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'5rem'}}></th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'4.5rem'}}></th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'3.7rem'}}>Last life declaration due date offered to Nominee/User</th>
-//         <th style={{width:"20rem",textAlign:'center',paddingTop:'3rem'}}>Date of User Status confirmation mail shared with nominee</th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'4rem'}}>Date of Response Received from nominee</th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'4.5rem'}}>Response Received from nominee</th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'3rem'}}>Date of death confirmation received from nominee</th>
-//         <th style={{width:"20rem",textAlign:'center'}}>Date of death certificate requesting mail shared with nominee
-//         </th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'3rem'}}>Date of death certificate received from nominee
-//         </th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'4.5rem'}}>Death certificate Validation Status  
-//         </th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'2rem'}}>Date of Validation Status mail shared with nominee
-//         </th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'2.5rem'}}>Date of asset details shared with nominee
-//         </th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'2rem'}}>Date of receiving of  asset details receiving confirmation from nominee
-//         </th>
-//         <th style={{width:'20rem',textAlign:'center',paddingTop:'6rem'}}>Loop Status
-//         </th>
-//       </tr>
-//     </thead>
-  
-//   </Table>
-//     </div>
-//     </>
-//   )
-// }
-
-// export default Duelifedeclaration
-
-
 import React from "react";
 import {
   Col,
   Row,
-  Card, 
+  Card,
   Input,
   Button,
   CardBody,
@@ -138,7 +18,7 @@ import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-// import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
@@ -156,119 +36,189 @@ class Duelifedeclaration extends React.Component {
         headerName: "S.No",
         valueGetter: "node.rowIndex + 1",
         field: "node.rowIndex + 1",
-        width:100,
-      
+        width: 100,
+
         filter: true,
       },
-     
+
       {
         headerName: "User Phone Number",
         field: "UserPhoneNumber",
         // filter: true,
-        width:200,
-       
+        width: 200,
+
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          return <div className="">{params?.data?.userId?.mobileNo}</div>;
         },
       },
       {
-        headerName: " Actual Life declaration due date",
+        headerName: "Actual Life declaration due date",
         field: "ActualLifedeclarationduedate",
         // filter: true,
-        width:300,
-       
+        width: 300,
+
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          return <div className="">{params?.data?.nextDeclarationDate}</div>;
         },
       },
       {
         headerName: "Revised Life declaration due date",
         field: "RevisedLifedeclarationduedate",
         // filter: true,
-        width:350,       
+        width: 350,
+
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.policyIssuersName}</div>;
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
         },
       },
       {
-        headerName: "Actions",
-        field: "sortorder",
-        width:200,
-       
-        // pinned: window.innerWidth > 992 ? "right" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="actions cursor-pointer">
-              <Route
-                render={({ history }) => (
-                  <Eye
-                    className="mr-50"
-                    size="25px"
-                    color="green"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/app/asset/ViewAsset/${params?.data?._id}`,
-                        state: params.data,
-                      })
-                    }
-                  />
-                )}
-              />
-              <Route
-                render={({ history }) => (
-                  <Edit
-                    className="mr-50"
-                    size="25px"
-                    color="blue"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/app/asset/EditAsset/${params?.data?._id}`,
-                        state: params.data,
-                      })
-                    }
-                  />
-                )}
-              /> 
+        headerName:
+          "Last Life declaration on due date offerted to Nominee/User",
+        field: "Lifedeclarationduedate",
+        // filter: true,
+        width: 350,
 
-              <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  this.runthisfunction(params.data?._id);
-                }}
-              /> 
-            </div>
-          );
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Date of User Status Confirmation mail shared with nominee",
+        field: "Lifedeclarationduedate",
+        // filter: true,
+        width: 350,
+
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Date of Response Reveived from nominee",
+        field: "DateofResponse",
+        // filter: true,
+        width: 350,
+
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Response Reveived from nominee",
+        field: "DateofResponse",
+        // filter: true,
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName:
+          "Date of death certificate requesting mail shared with nominee",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Date of death certificate received from nominee",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Death certificate Validation Status",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Date of Validation Status mail shared with nominee",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Date of asset details shared with nominee",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName:
+          "Date of receiving of asset details receiving confirmation from nominee",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+        },
+      },
+      {
+        headerName: "Loop Status",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
         },
       },
 
-     
       // {
-      //   headerName: "Policy Number",
-      //   field: "PlanType",
-      //   // filter: true,
-      //   width: 180,
+      //   headerName: "Actions",
+      //   field: "sortorder",
+      //   width: 200,
+
+      //   // pinned: window.innerWidth > 992 ? "right" : false,
       //   cellRendererFramework: (params) => {
-      //     return <div className="">{params?.data?.policynumber}</div>;
-      //   },
-      // },
-      // {
-      //   headerName: "status",
-      //   field: "PlanType",
-      //   // filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return <div className="">{params?.data?.status}</div>;
-      //   },
-      // },
-      // {
-      //   headerName: "ReEnterPolicyNumber",
-      //   field: "reEnterPolicyNumber",
-      //   // filter: true,
-      //   width: 250,
-      //   cellRendererFramework: (params) => {
-      //     return <div className="">{params?.data?.ReEnterPolicyNumber}</div>;
+      //     return (
+      //       <div className="actions cursor-pointer">
+      //         <Route
+      //           render={({ history }) => (
+      //             <Eye
+      //               className="mr-50"
+      //               size="25px"
+      //               color="green"
+      //               onClick={() =>
+      //                 history.push({
+      //                   pathname: `/ViewDueLife/${params?.data?._id}`,
+      //                 })
+      //               }
+      //             />
+      //           )}
+      //         />
+      //         <Route
+      //           render={({ history }) => (
+      //             <Edit
+      //               className="mr-50"
+      //               size="25px"
+      //               color="blue"
+      //               onClick={() =>
+      //                 history.push({
+      //                   pathname: `/app/asset/EditAsset/${params?.data?._id}`,
+      //                   state: params.data,
+      //                 })
+      //               }
+      //             />
+      //           )}
+      //         />
+
+      //         <Trash2
+      //           className="mr-50"
+      //           size="25px"
+      //           color="red"
+      //           onClick={() => {
+      //             this.runthisfunction(params.data?._id);
+      //           }}
+      //         />
+      //       </div>
+      //     );
       //   },
       // },
     ],
@@ -278,16 +228,15 @@ class Duelifedeclaration extends React.Component {
   }
   AssetList = () => {
     axiosConfig
-      .get("/asset/view-asset")
+      .get("/life-declaration/view-life-declaration")
       .then((response) => {
-        // const rowData = response.data.Asset;
-        console.log(response.data);
-        // this.setState({ rowData });
+        console.log(response.data.Life);
+        const rowData = response?.data?.Life;
+        this.setState({ rowData });
       })
       .catch((err) => {
         swal("Something Went Wrong");
       });
-    
   };
 
   runthisfunction(id) {
@@ -347,12 +296,10 @@ class Duelifedeclaration extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-              Due Life Declaration
+                Life Declaration List
               </h1>
             </Col>
-            <Col className="">
-             
-            </Col>
+            <Col className=""></Col>
           </Row>
 
           <CardBody className="py-0">
@@ -404,7 +351,7 @@ class Duelifedeclaration extends React.Component {
                     </UncontrolledDropdown>
                   </div>
                   <div className="d-flex flex-wrap  mb-1">
-                    <div className="table-input mr-1" >
+                    <div className="table-input mr-1">
                       <Input
                         className="cssformanageassetinput cssmartopmargin"
                         placeholder="search..."
@@ -412,24 +359,22 @@ class Duelifedeclaration extends React.Component {
                         value={this.state.value}
                       />
                     </div>
-                    <div style={{marginRight:'10px'}}>
-                    {/*
-                    <Route
-                    render={({ history }) => (
-                      <Button
-                        className=" btn  float-right cssmartopmargin"
-                        color="primary"
-                        onClick={() => history.push("/app/AddAssets")}
-                      >
-                        Add Assets
-                      </Button>
-                    )}
-                  />
-                   */}
-                    </div>
+                    {/* <div style={{ marginRight: "10px" }}>
+                      <Route
+                        render={({ history }) => (
+                          <Button
+                            className=" btn  float-right cssmartopmargin"
+                            color="primary"
+                            onClick={() => history.push("/app/AddAssets")}
+                          >
+                            Add DueLifeDecalaration
+                          </Button>
+                        )}
+                      />
+                    </div> */}
                     <div>
                       <Button.Ripple
-                      className='cssmartopmargin'
+                        className="cssmartopmargin"
                         color="primary"
                         onClick={() => this.gridApi.exportDataAsCsv()}
                       >

@@ -69,11 +69,11 @@ export default class EditPlanType extends Component {
   };
   submitHandler = (e) => {
     const payload = {
-      assettype: this.state.assettype,
-      field1: this.state.field1,
-      field2: this.state.field2,
-      field3: this.state.field3,
-      field4: this.state.field4,
+      Asset_Type: this.state.assettype,
+      Field_1: this.state.field1,
+      Field_2: this.state.field2,
+      Field_3: this.state.field3,
+      Field_4: this.state.field4,
       // file (uploadPolicy),policynumber,policyIssuersName,ReEnterPolicyNumber,userId
     };
     e.preventDefault();
@@ -200,8 +200,9 @@ export default class EditPlanType extends Component {
               </Row>
               <div style={{justifyContent:'right',display:'flex'}}>
               <Button.Ripple
-              style={{backgroundColor:'#2966ac'}}
+              
                type="submit"
+               color="primary"
                className="mr-1 mb-1"
              >
                Update 
