@@ -8,7 +8,8 @@ import { Layout } from "./utility/context/Layout";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./redux/storeConfig/store";
 import Spinner from "./components/@vuexy/spinner/Fallback-spinner";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
 import "./@fake-db";
 

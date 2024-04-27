@@ -1,4 +1,5 @@
 import React from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Col,
   Row,
@@ -10,6 +11,10 @@ import {
   DropdownItem,
   DropdownToggle,
   UncontrolledDropdown,
+  FormGroup,
+  Label,
+  Form,
+  CustomInput,
 } from "reactstrap";
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
@@ -22,6 +27,8 @@ import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
+    switchState: false, // Initialize switch state to false
+    isCheck: false,
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -40,11 +47,9 @@ class Duelifedeclaration extends React.Component {
 
         filter: true,
       },
-
       {
         headerName: "User Phone Number",
         field: "UserPhoneNumber",
-        // filter: true,
         width: 200,
 
         cellRendererFramework: (params) => {
@@ -54,7 +59,6 @@ class Duelifedeclaration extends React.Component {
       {
         headerName: "Actual Life declaration due date",
         field: "ActualLifedeclarationduedate",
-        // filter: true,
         width: 300,
 
         cellRendererFramework: (params) => {
@@ -64,7 +68,6 @@ class Duelifedeclaration extends React.Component {
       {
         headerName: "Revised Life declaration due date",
         field: "RevisedLifedeclarationduedate",
-        // filter: true,
         width: 350,
 
         cellRendererFramework: (params) => {
@@ -75,7 +78,6 @@ class Duelifedeclaration extends React.Component {
         headerName:
           "Last Life declaration on due date offerted to Nominee/User",
         field: "Lifedeclarationduedate",
-        // filter: true,
         width: 350,
 
         cellRendererFramework: (params) => {
@@ -85,27 +87,32 @@ class Duelifedeclaration extends React.Component {
       {
         headerName: "Date of User Status Confirmation mail shared with nominee",
         field: "Lifedeclarationduedate",
-        // filter: true,
-        width: 350,
+        width: 400,
 
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return (
+            <div className="">
+              {params?.data?.dateOfUserStatusConfirmationMailNominee}
+            </div>
+          );
         },
       },
       {
         headerName: "Date of Response Reveived from nominee",
         field: "DateofResponse",
-        // filter: true,
-        width: 350,
+        width: 400,
 
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return (
+            <div className="">
+              {params?.data?.dateOfResponseReceivedNominee}
+            </div>
+          );
         },
       },
       {
         headerName: "Response Reveived from nominee",
         field: "DateofResponse",
-        // filter: true,
         width: 350,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.lastDeclarationDate}</div>;
@@ -123,7 +130,7 @@ class Duelifedeclaration extends React.Component {
       {
         headerName: "Date of death certificate received from nominee",
         field: "DateofResponse",
-        width: 350,
+        width: 400,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.lastDeclarationDate}</div>;
         },
@@ -132,14 +139,45 @@ class Duelifedeclaration extends React.Component {
         headerName: "Death certificate Validation Status",
         field: "DateofResponse",
         width: 350,
+
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          console.log(params.data);
+          return (
+            <CustomInput
+              type="switch"
+              id={params.data._id}
+              name="item_name"
+              label=""
+              inline
+              // checked={this.state.switchState}
+              checked={params.data.deadCertificateValidationStatus}
+              // onChange={(event) => this.toggleSwitch(event.target.checked)}
+              onChange={(event) =>
+                this.toggleSwitch(event.target.checked, params.data._id)
+              }
+            />
+            // <div className="">
+            //   <CustomInput
+            //     type="switch"
+            //     id={params.data._id}
+            //     title="Invalid"
+            //     name="item_name"
+            //     // value={this.state.item_name}
+            //     // onChange={this.changeHandler}
+            //     label=""
+            //     // name="switchState"
+            //     // checked={this.state.switchState} // Set the checked property based on switchState
+            //     // onChange={this.toggleSwitch} // Call toggleSwitch function on change
+            //     inline
+            //   />
+            // </div>
+          );
         },
       },
       {
         headerName: "Date of Validation Status mail shared with nominee",
         field: "DateofResponse",
-        width: 350,
+        width: 400,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.lastDeclarationDate}</div>;
         },
@@ -228,10 +266,10 @@ class Duelifedeclaration extends React.Component {
   }
   AssetList = () => {
     axiosConfig
-      .get("/life-declaration/view-life-declaration")
+      .get("/life-declaration/view-user-status")
       .then((response) => {
-        console.log(response.data.Life);
-        const rowData = response?.data?.Life;
+        console.log(response.data.User);
+        const rowData = response?.data?.User;
         this.setState({ rowData });
       })
       .catch((err) => {
@@ -274,6 +312,23 @@ class Duelifedeclaration extends React.Component {
     });
   };
 
+  // toggleSwitch = (newState) => {
+  //   console.log(newState);
+  //   this.setState({
+  //     switchState: newState,
+  //   });
+  // };
+  toggleSwitch = (newState, id) => {
+    console.log(newState);
+    this.setState({
+      switchState: newState,
+    });
+    // Update your rowData with the new state for the corresponding row
+    // const updatedRowData = this.state.rowData.map((row) =>
+    //   row._id === id ? { ...row, switchState: newState } : row
+    // );
+    // this.setState({ rowData: updatedRowData });
+  };
   updateSearchQuery = (val) => {
     this.gridApi.setQuickFilter(val);
   };
