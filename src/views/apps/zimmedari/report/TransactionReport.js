@@ -39,7 +39,6 @@ class TransactionReport extends React.Component {
         width: 100,
         filter: true,
       },
-     
 
       {
         headerName: "User ID",
@@ -140,23 +139,6 @@ class TransactionReport extends React.Component {
           return <div className=""></div>;
         },
       },
-      
-      
-      //   {
-      //     headerName: "PlanType Description",
-      //     field: "Description",
-      //     filter: true,
-      //     width: 500,
-      //     cellRendererFramework: (params) => {
-      //       return (
-      //         <div className="">
-      //           <span className="">
-      //             {ReactHtmlParser(params?.data?.plan_desc)}
-      //           </span>
-      //         </div>
-      //       );
-      //     },
-      //   },
     ],
   };
   componentDidMount() {
@@ -166,7 +148,6 @@ class TransactionReport extends React.Component {
     axiosConfig
       .get("/user-list")
       .then((response) => {
-        // console.log(response.data.User);
         const rowData = response.data.User;
         this.setState({ rowData });
       })

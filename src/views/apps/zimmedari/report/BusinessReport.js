@@ -39,7 +39,6 @@ class BusinessReport extends React.Component {
         width: 100,
         filter: true,
       },
-      
 
       {
         headerName: "Date",
@@ -56,7 +55,7 @@ class BusinessReport extends React.Component {
         filter: true,
         width: 300,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params.data?.NoOfUserRegistered}</div>;
         },
       },
       {
@@ -65,25 +64,9 @@ class BusinessReport extends React.Component {
         filter: true,
         width: 300,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params.data?.NoOfUserSubcribe}</div>;
         },
       },
-      
-      //   {
-      //     headerName: "PlanType Description",
-      //     field: "Description",
-      //     filter: true,
-      //     width: 500,
-      //     cellRendererFramework: (params) => {
-      //       return (
-      //         <div className="">
-      //           <span className="">
-      //             {ReactHtmlParser(params?.data?.plan_desc)}
-      //           </span>
-      //         </div>
-      //       );
-      //     },
-      //   },
     ],
   };
   componentDidMount() {
@@ -91,11 +74,14 @@ class BusinessReport extends React.Component {
   }
   BusinessReport = () => {
     axiosConfig
-      .get("/user-list")
+      .get("/user/business-report-user")
       .then((response) => {
-        // console.log(response.data.User);
-        const rowData = response.data.User;
-        this.setState({ rowData });
+        console.log(response.data.BusinessReport);
+        let newArray = [response.data.BusinessReport];
+
+        console.log(newArray);
+        const rowData = response.data.BusinessReport;
+        this.setState({ rowData: newArray });
       })
       .catch((err) => {
         swal("Something Went Wrong");
