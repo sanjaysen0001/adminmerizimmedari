@@ -308,19 +308,19 @@ const navigationConfig = [
   //   permissions: ["admin", "editor"],
   //   navLink: "/app/ContactUs/ContactUsList",
   // },
-  {
-    type: "groupHeader",
-    groupTitle: "Profile Page",
-  },
+  // {
+  //   type: "groupHeader",
+  //   groupTitle: "Profile Page",
+  // },
 
-  {
-    id: "profile",
-    title: "My Account",
-    type: "item",
-    icon: <Icon.ArrowRight size={12} />,
-    permissions: ["admin", "editor"],
-    navLink: "/pages/profile",
-  },
+  // {
+  //   id: "profile",
+  //   title: "My Account",
+  //   type: "item",
+  //   icon: <Icon.ArrowRight size={12} />,
+  //   permissions: ["admin", "editor"],
+  //   navLink: "/pages/profile",
+  // },
 
   // {
   //   id: "userAppreciation",

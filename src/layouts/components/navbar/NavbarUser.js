@@ -65,16 +65,16 @@ const NavbarUser = () => {
           </span>
         </DropdownToggle>
         <DropdownMenu right style={{ width: "fit-content" }}>
-          <DropdownItem
+          {/* <DropdownItem
             tag="a"
             href="#"
             onClick={(e) => handleNavigation(e, "/#/pages/profile")}
           >
             <Icon.User size={14} className="mr-50" />
             <span className="align-middle">Edit Profile</span>
-          </DropdownItem>
+          </DropdownItem> */}
           <DropdownItem divider />
-          <Route
+          {/* <Route
             render={({ history }) => (
               <DropdownItem
                 tag="a"
@@ -86,7 +86,7 @@ const NavbarUser = () => {
                 <span className="align-middle">Change Password</span>
               </DropdownItem>
             )}
-          />
+          /> */}
           <DropdownItem divider />
           <Route
             render={({ history }) => (

@@ -83,7 +83,6 @@ class LoginJWT extends React.Component {
           "error"
         );
       });
-    window.location.replace("/#");
   };
   render() {
     return (

@@ -44,7 +44,7 @@ class NomineeList extends React.Component {
 
       {
         headerName: "User Id",
-        field: "userid",
+        field: "userId",
 
         width: 200,
 
@@ -64,7 +64,7 @@ class NomineeList extends React.Component {
       },
       {
         headerName: "Phone No.",
-        field: "phoneno",
+        field: "mobileNo",
 
         width: 200,
 
@@ -74,7 +74,7 @@ class NomineeList extends React.Component {
       },
       {
         headerName: "Nominee Id",
-        field: "nomineeid",
+        field: "relationWithNominee",
         width: 200,
         cellRendererFramework: (params) => {
           return (
@@ -84,7 +84,7 @@ class NomineeList extends React.Component {
       },
       {
         headerName: "Relation With Nominee",
-        field: "relationwithnominee",
+        field: "relationWithNominee",
         width: 200,
         cellRendererFramework: (params) => {
           console.log(params?.data?.nominee);
@@ -95,7 +95,7 @@ class NomineeList extends React.Component {
       },
       {
         headerName: "Nominee Phone No.",
-        field: "nomineephoneno",
+        field: "NomineePhoneNumber",
 
         width: 200,
 
@@ -107,10 +107,8 @@ class NomineeList extends React.Component {
       },
       {
         headerName: "Nominee Phone No. Status",
-        field: "nomineephonenostatus",
-
+        field: "mobileVerifyStatus",
         width: 200,
-
         cellRendererFramework: (params) => {
           return (
             <div className="">{params?.data?.nominee?.mobileVerifyStatus}</div>

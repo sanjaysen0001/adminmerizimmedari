@@ -78,7 +78,7 @@ class UserList extends React.Component {
 
       {
         headerName: "User ID",
-        field: "User ID",
+        field: "_id",
         filter: true,
         width: 240,
         cellRendererFramework: (params) => {
@@ -87,7 +87,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "User Name",
-        field: "UserName",
+        field: "firstName",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
@@ -105,7 +105,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "Gender",
-        field: "Gender",
+        field: "gender",
         filter: true,
         width: 120,
         cellRendererFramework: (params) => {
@@ -114,7 +114,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "Phone Number",
-        field: "PhoneNumber",
+        field: "mobileNo",
         filter: true,
         width: 190,
         cellRendererFramework: (params) => {
@@ -132,7 +132,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "Email Status",
-        field: "email",
+        field: "mailVerifyStatus",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
@@ -145,7 +145,9 @@ class UserList extends React.Component {
         filter: true,
         width: 190,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.createdAt.split('T')[0]}</div>;
+          return (
+            <div className="">{params?.data?.createdAt.split("T")[0]}</div>
+          );
         },
       },
       {
@@ -168,7 +170,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "No.Of Nominee Added",
-        field: "Nominee",
+        field: "noOfNominee",
         filter: true,
         width: 230,
         cellRendererFramework: (params) => {
@@ -177,7 +179,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "No.Of Asset Type Added",
-        field: "Asset",
+        field: "noOfAssetsType",
         filter: true,
         width: 230,
         cellRendererFramework: (params) => {
@@ -186,7 +188,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "No. Of Total Asset Added",
-        field: "Total",
+        field: "noOfTotalAssets",
         filter: true,
         width: 230,
         cellRendererFramework: (params) => {
@@ -195,7 +197,7 @@ class UserList extends React.Component {
       },
       {
         headerName: "No.Of Confidential Note Added",
-        field: "Confidential",
+        field: "noOfConfidentialNote",
         filter: true,
         width: 250,
         cellRendererFramework: (params) => {

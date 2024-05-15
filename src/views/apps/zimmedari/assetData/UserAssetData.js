@@ -78,7 +78,7 @@ class UserAssetData extends React.Component {
 
       {
         headerName: "Name",
-        field: "name",
+        field: "firstName",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
