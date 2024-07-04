@@ -41,9 +41,9 @@ class Profile extends React.Component {
   };
 
   componentDidMount() {
-    let AdminDetails = JSON.parse(localStorage.getItem("AdminData"));
+    let AdminDetails = JSON.parse(sessionStorage.getItem("AdminData"));
     console.log(AdminDetails);
-    // let adminId = localStorage.getItem("AdminData");
+    // let adminId = sessionStorage.getItem("AdminData");
     // axiosConfig
     //   .get(`/admin/viewoneadmin/${adminId}`)
     //   .then((response) => {
@@ -69,7 +69,7 @@ class Profile extends React.Component {
   };
 
   submitHandler = (e) => {
-    let adminId = localStorage.getItem("AdminId");
+    let adminId = sessionStorage.getItem("AdminId");
     e.preventDefault();
 
     const data = new FormData();
@@ -84,7 +84,7 @@ class Profile extends React.Component {
     axiosConfig
       .post(`admin/editprofile/${adminId}`, data, {
         headers: {
-          "ad-token": localStorage.getItem("ad-token"),
+          "ad-token": sessionStorage.getItem("ad-token"),
         },
       })
       .then((response) => {

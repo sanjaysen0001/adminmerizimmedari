@@ -64,7 +64,7 @@ export default class AddAgent extends Component {
     formData.append("state", this.state.state);
     formData.append("zipcode", this.state.zipcode);
     formData.append("phone", this.state.phone);
-    let adminId = localStorage.getItem("AdminId");
+    let adminId = sessionStorage.getItem("AdminId");
     if (this.state.selectedFile != null) {
       formData.append("image", this.state.selectedFile);
     }

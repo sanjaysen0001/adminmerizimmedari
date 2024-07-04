@@ -24,7 +24,7 @@ class ViewSize extends React.Component {
     axiosConfig
       .get(`/viewonesize/${id}`, {
         headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+          "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         },
       })
       .then((response) => {

@@ -206,7 +206,7 @@ class DiscountList extends React.Component {
     await axiosConfig
       .get("/discount_list", {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {

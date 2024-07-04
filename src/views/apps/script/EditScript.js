@@ -29,7 +29,7 @@ export default class EditScript extends Component {
     axiosConfig
       .get(`/getone_script/${id}`, {
         headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+          "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         },
       })
       .then((response) => {
@@ -56,7 +56,7 @@ export default class EditScript extends Component {
     axiosConfig
       .post(`/editScript/${id}`, this.state, {
         headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+          "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         },
       })
       .then((response) => {

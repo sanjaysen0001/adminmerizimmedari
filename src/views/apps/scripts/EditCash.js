@@ -29,7 +29,7 @@ export default class EditCash extends Component {
     axiosConfig
       .get(`/admin/getoneCashScript/${id}`, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {
@@ -55,7 +55,7 @@ export default class EditCash extends Component {
     axiosConfig
       .post(`admin/editCashScript/${id}`, this.state, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {

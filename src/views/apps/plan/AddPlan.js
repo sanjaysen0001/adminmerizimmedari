@@ -124,7 +124,7 @@ class AddPlan extends React.Component {
     e.preventDefault();
     // debugger;clg
     console.log(this.state);
-    // const adminId = localStorage.getItem("AdminId");
+    // const adminId = sessionStorage.getItem("AdminId");
 
     // const formdata = new FormData();
     // formdata.append("policyName", this.state.policyName);

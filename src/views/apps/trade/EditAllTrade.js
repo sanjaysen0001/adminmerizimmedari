@@ -119,7 +119,7 @@ class EditAllTrade extends React.Component {
     axiosConfig
       .post(`/edit_trade/${id}`, this.state, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {

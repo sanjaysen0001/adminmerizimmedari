@@ -156,7 +156,7 @@ class NomineeList extends React.Component {
             return { ...item, nominee: element };
           });
         });
-        console.log(newList);
+
         this.setState({ rowData: newList });
       })
       .catch((err) => {

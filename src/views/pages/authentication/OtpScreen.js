@@ -46,7 +46,7 @@ class OtpScreen extends React.Component {
         if (response.data.status === "success") {
           console.log(response.data.otp);
           this.props.history.push(`/pages/reset-password`);
-          // localStorage.setItem("auth", response.data.data?._id);
+          // sessionStorage.setItem("auth", response.data.data?._id);
           // window.location.replace("/#/");
         } else {
           alert(response.data.msg);

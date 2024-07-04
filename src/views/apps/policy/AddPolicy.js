@@ -91,7 +91,7 @@ class AddPolicy extends React.Component {
   };
   submitHandler = (e) => {
     e.preventDefault();
-    const adminId = localStorage.getItem("AdminId");
+    const adminId = sessionStorage.getItem("AdminId");
     const formdata = new FormData();
     formdata.append("policyName", this.state.policyName);
     formdata.append("policyNum", this.state.policyNumber);

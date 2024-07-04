@@ -42,29 +42,29 @@ class TransactionReport extends React.Component {
 
       {
         headerName: "User ID",
-        field: "userid",
+        field: "id",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.id}</div>;
         },
       },
       {
         headerName: "User Name",
-        field: "username",
+        field: "firstName",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.firstName}</div>;
         },
       },
       {
         headerName: "User Phone Number",
-        field: "userphonenumber",
+        field: "mobileNo",
         filter: true,
         width: 250,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.mobileNo}</div>;
         },
       },
       {
@@ -100,7 +100,7 @@ class TransactionReport extends React.Component {
         filter: true,
         width: 220,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.subcriptionStatus}</div>;
         },
       },
       {
@@ -149,6 +149,7 @@ class TransactionReport extends React.Component {
       .get("/user-list")
       .then((response) => {
         const rowData = response.data.User;
+        console.log(rowData);
         this.setState({ rowData });
       })
       .catch((err) => {

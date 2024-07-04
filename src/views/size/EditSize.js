@@ -31,7 +31,7 @@ export default class EditSize extends Component {
     axiosConfig
       .get(`/viewonesize/${id}`, {
         headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+          "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         },
       })
       .then((response) => {
@@ -58,7 +58,7 @@ export default class EditSize extends Component {
     axiosConfig
       .post(`/editsize/${id}`, this.state, {
         headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+          "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         },
       })
       .then((response) => {

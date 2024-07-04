@@ -29,7 +29,7 @@ class ChangePassword extends React.Component {
   }
 
   //   componentDidMount() {
-  //     let adminId = localStorage.getItem("AdminId");
+  //     let adminId = sessionStorage.getItem("AdminId");
   //     axiosConfig
   //       .get(`/admin/viewoneadmin/${adminId}`)
   //       .then((response) => {
@@ -61,7 +61,7 @@ class ChangePassword extends React.Component {
         cnfmPassword: this.state.cnfmPassword,
       };
 
-      let adminId = localStorage.getItem("AdminId");
+      let adminId = sessionStorage.getItem("AdminId");
       axiosConfig
         .post(`/admin/changeAdmingpassword/${adminId}`, password)
         .then((response) => {

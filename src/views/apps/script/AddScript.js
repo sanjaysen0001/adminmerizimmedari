@@ -37,7 +37,7 @@ export default class AddScript extends Component {
     axiosConfig
       .post("/addScript", this.state, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {

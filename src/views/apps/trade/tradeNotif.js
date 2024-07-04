@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import {
   Card,
@@ -40,7 +39,7 @@ export default class AddSize extends Component {
     axiosConfig
       .post("/addsize", this.state, {
         headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+          "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         },
       })
       .then((response) => {
@@ -101,7 +100,7 @@ export default class AddSize extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-              <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Trade</Label>
                   <Input
                     required
@@ -112,7 +111,7 @@ export default class AddSize extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                   <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Message</Label>
                   <Input
                     required
@@ -122,7 +121,7 @@ export default class AddSize extends Component {
                     value={this.state.desc}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col> 
+                </Col>
 
                 {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label className="mb-1">Status</Label>

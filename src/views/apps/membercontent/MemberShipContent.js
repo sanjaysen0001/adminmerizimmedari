@@ -112,12 +112,14 @@ class MemberShipContent extends React.Component {
     await axiosConfig
       .get("/getContent", {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
+        
       })
       .then((response) => {
         const rowData = response.data.data;
         console.log(rowData);
+        
         this.setState({ rowData });
       });
   }

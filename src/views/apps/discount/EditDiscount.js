@@ -20,17 +20,15 @@ class EditDiscount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        title: "",
-        dis_type: "",
-        dis_amt: "",
-        plan: "",
-        userid: "",
-        startdate: "",
-        expdate:""
-
+      title: "",
+      dis_type: "",
+      dis_amt: "",
+      plan: "",
+      userid: "",
+      startdate: "",
+      expdate: "",
     };
     this.state = {
-      
       planN: [],
       userN: [],
     };
@@ -40,19 +38,19 @@ class EditDiscount extends React.Component {
     axiosConfig
       .get(`/getone_equityCash/${id}`, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {
         console.log(response);
         this.setState({
-        title: response.data.data.title,
-        dis_type:response.data.data.dis_type,
-        dis_amt: response.data.data.dis_amt,
-        plan: response.data.data.plan,
-        userid: response.data.data.userid,
-        startdate: response.data.data.startdate,
-        expdate: response.data.data.expdate,
+          title: response.data.data.title,
+          dis_type: response.data.data.dis_type,
+          dis_amt: response.data.data.dis_amt,
+          plan: response.data.data.plan,
+          userid: response.data.data.userid,
+          startdate: response.data.data.startdate,
+          expdate: response.data.data.expdate,
         });
       })
       .catch((error) => {
@@ -71,25 +69,24 @@ class EditDiscount extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  
-     //User//
-     axiosConfig
-     .get("/getuser")
-     .then((response) => {
-       console.log(response);
-       this.setState({
-         // scriptT: response.data.data, pack_name
-         userN: response.data.data,
-       });
-     })
-     .catch((error) => {
-       console.log(error);
-     });
- }
+
+    //User//
+    axiosConfig
+      .get("/getuser")
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          // scriptT: response.data.data, pack_name
+          userN: response.data.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
   };
-
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -100,7 +97,7 @@ class EditDiscount extends React.Component {
     axiosConfig
       .post(`/edit_equityCash/${id}`, this.state, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {
@@ -143,8 +140,6 @@ class EditDiscount extends React.Component {
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
-             
-               
                 <Col lg="6" md="6" className="mb-2">
                   <Label>Title</Label>
                   <Input
@@ -200,9 +195,7 @@ class EditDiscount extends React.Component {
                     onChange={this.changeHandler}
                   />
                 </Col>
-            
-              
-          
+
                 {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Script</Label>
                   <CustomInput
@@ -249,8 +242,7 @@ class EditDiscount extends React.Component {
                     <option>SELL</option>
                   </Input>
                 </Col>
-              
-                
+
                 <Col lg="6" md="6" className="mb-2">
                   <div>
                     <Label>P&L</Label>
@@ -282,7 +274,7 @@ class EditDiscount extends React.Component {
                     onChange={this.changeHandler}
                   />
                 </Col>
-        
+
                 <Col lg="3" md="3" sm="3" className="mb-3 mt-1">
                   <Label className="mb-1">T4</Label>
                   <div

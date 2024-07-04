@@ -15,7 +15,6 @@ import swal from "sweetalert";
 import { Route } from "react-router-dom";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
-
 class EditDiscount extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +33,6 @@ class EditDiscount extends React.Component {
     };
   }
   async componentDidMount() {
-
     //plan//
     axiosConfig
       .get("/plan_list")
@@ -76,7 +74,7 @@ class EditDiscount extends React.Component {
     axiosConfig
       .post(`/add_discount/${id}`, this.state, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {
@@ -151,7 +149,8 @@ class EditDiscount extends React.Component {
                     name="pack_name"
                     value={this.state.pack_name}
                     onChange={this.changeHandler}
-                  ><option>Select Plan</option>
+                  >
+                    <option>Select Plan</option>
                     <option>Free</option>
                     {this.state.planN?.map((allPlan) => (
                       <option value={allPlan?._id} key={allPlan?._id}>

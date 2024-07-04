@@ -56,7 +56,7 @@ class OtpVerify extends React.Component {
           console.log(response.data.otp);
           console.log(response.data._id);
           this.props.history.push(`/pages/reset-password/` + idUrl);
-          // localStorage.setItem("auth", response.data.data?._id);
+          // sessionStorage.setItem("auth", response.data.data?._id);
           // window.location.replace("/#/");
         } else {
           alert(response.data.msg);
@@ -205,7 +205,7 @@ export default OtpVerify;
 //       if(response.data.status === 'success'){
 //         console.log(response.data.otp);
 //         this.props.history.push(`/pages/reset-password`);
-//         // localStorage.setItem("auth", response.data.data?._id);
+//         // sessionStorage.setItem("auth", response.data.data?._id);
 //         // window.location.replace("/#/");
 //       }else{
 //           alert(response.data.msg)

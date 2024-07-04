@@ -24,7 +24,7 @@ const NavbarUser = () => {
   const [adminimg, setAdminimg] = useState({});
 
   const tokenVerify = () => {
-    let data = localStorage.getItem("ad-token");
+    let data = sessionStorage.getItem("ad-token");
     sessionStorage.clear();
     if (data === undefined || data === null) {
       window.location.replace("/#/pages/login");
@@ -32,7 +32,7 @@ const NavbarUser = () => {
   };
 
   useEffect(() => {
-    let adminId = localStorage.getItem("AdminId");
+    let adminId = sessionStorage.getItem("AdminId");
     // tokenVerify();
     // async function getNotifications() {
     //   try {
@@ -93,9 +93,9 @@ const NavbarUser = () => {
               <DropdownItem
                 tag="a"
                 onClick={(e) => {
-                  localStorage.removeItem("ad-token");
-                  localStorage.removeItem("AdminData");
-                  localStorage.removeItem("userId");
+                  sessionStorage.removeItem("ad-token");
+                  sessionStorage.removeItem("AdminData");
+                  sessionStorage.removeItem("userId");
                   window.location.replace("/#/pages/login");
                 }}
               >

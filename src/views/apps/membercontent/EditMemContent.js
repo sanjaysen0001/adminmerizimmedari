@@ -32,7 +32,7 @@ export default class EditMemContent extends Component {
     axiosConfig
       .get(`/getone_content/${id}`, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {
@@ -59,7 +59,7 @@ export default class EditMemContent extends Component {
     axiosConfig
       .post(`/edit_content/${id}`, this.state, {
         // headers: {
-        //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   "auth-adtoken": sessionStorage.getItem("auth-adtoken"),
         // },
       })
       .then((response) => {
