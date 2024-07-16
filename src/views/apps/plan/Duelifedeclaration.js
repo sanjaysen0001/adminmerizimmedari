@@ -27,7 +27,7 @@ import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
-    switchState: false, // Initialize switch state to false
+    switchState: false,
     isCheck: false,
     paginationPageSize: 20,
     currenPageSize: "",
@@ -62,7 +62,7 @@ class Duelifedeclaration extends React.Component {
         width: 300,
 
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.nextDeclarationDate}</div>;
+          return <div className="">{params?.data?.lastDeclarationDate}</div>;
         },
       },
       {
@@ -71,7 +71,7 @@ class Duelifedeclaration extends React.Component {
         width: 350,
 
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return <div className="">{params?.data?.nextDeclarationDate}</div>;
         },
       },
       {
@@ -204,7 +204,7 @@ class Duelifedeclaration extends React.Component {
         field: "DateofResponse",
         width: 350,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return <div className=""></div>;
         },
       },
 

@@ -88,12 +88,16 @@ class UserAssetData extends React.Component {
         },
       },
       {
-        headerName: "Field 1 Status (Available / Not Available)",
+        headerName: "Field1 Status",
         field: "field1status",
         filter: true,
-        width: 350,
+        width: 180,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.Field_1}</div>;
+          return (
+            <div className="">
+              {params?.data?.Field_1 ? "Available" : "Not Available"}
+            </div>
+          );
         },
       },
       {

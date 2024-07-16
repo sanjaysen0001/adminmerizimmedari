@@ -66,7 +66,7 @@ class LoginJWT extends React.Component {
           sessionStorage.setItem("ad-token", response.data.Admin?.token);
           sessionStorage.setItem("AdminData", JSON.stringify(response.data));
           sessionStorage.setItem("AdminId", response.data.Admin._id);
-          console.log(response.data);
+          console.log(response.data.Admin);
           window.location.replace("/#");
           swal("Login Successfully");
         } else if (response.status === 204 || response.status === 400) {

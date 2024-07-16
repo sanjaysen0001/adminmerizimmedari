@@ -34,7 +34,7 @@ const EditTermsConditions = lazy(() =>
 );
 const managefaq = lazy(() => import("./views/pages/BusinessPolicy/Managefaq"));
 const listfaq = lazy(() => import("./views/pages/BusinessPolicy/Listfaq"));
-const EditFaqpage=lazy(()=>import("./views/pages/BusinessPolicy/EditFaq"));
+const EditFaqpage = lazy(() => import("./views/pages/BusinessPolicy/EditFaq"));
 const AddFaq = lazy(() => import("./views/pages/BusinessPolicy/AddFaq"));
 const managefaqedir = lazy(() =>
   import("./views/pages/BusinessPolicy/Managefaqedit")
@@ -224,7 +224,9 @@ const Managesubscriptionlist = lazy(() =>
 );
 const AssetList = lazy(() => import("./views/apps/plan/PlanTypeList"));
 const ViewAsset = lazy(() => import("./views/apps/plan/ViewAsset"));
-const Viewsubscribtion=lazy(()=>import("./views/apps/plan/Viewsubscribtion"))
+const Viewsubscribtion = lazy(() =>
+  import("./views/apps/plan/Viewsubscribtion")
+);
 const AddPlanType = lazy(() => import("./views/apps/plan/AddPlanType"));
 const PolicyTypeList = lazy(() =>
   import("./views/apps/policy/policyType/PolicyTypeList")
@@ -604,17 +606,14 @@ const AppRoute = connect(mapStateToProps)(RouteConfig);
 
 class AppRouter extends React.Component {
   componentDidMount() {
-    let data = localStorage.getItem("ad-token");
-
-    sessionStorage.clear();
-    if (data === undefined || data === null) {
+    let token = sessionStorage.getItem("ad-token");
+    if (token === undefined || token === null) {
+      sessionStorage.clear();
       window.location.replace("/#/pages/login");
     }
   }
   render() {
     return (
-      // Set the directory path if you are deploying in sub-folder
-
       <Router history={history}>
         <HashRouter>
           <Switch>
@@ -648,7 +647,7 @@ class AppRouter extends React.Component {
               component={listtermsandcondition}
             />
             <AppRoute path="/Listfaq" component={listfaq} />
-            <AppRoute path="/Editfaq/:id" component={EditFaqpage}/>
+            <AppRoute path="/Editfaq/:id" component={EditFaqpage} />
             <AppRoute path="/AddFaq" component={AddFaq} />
             <AppRoute path="/Managefaqedir" component={managefaqedir} />
             <AppRoute
@@ -803,9 +802,15 @@ class AppRouter extends React.Component {
               component={Managesubscriptionlist}
             />
             <AppRoute path="/app/asset/EditAsset/:id" component={EditAsset} />
-            <AppRoute path="/app/Edit-subscribtion/:id" component={Editsubscribtion}/>
+            <AppRoute
+              path="/app/Edit-subscribtion/:id"
+              component={Editsubscribtion}
+            />
             <AppRoute path="/app/asset/ViewAsset/:id" component={ViewAsset} />
-            <AppRoute path="/app/view-subscribtion/:id" component={Viewsubscribtion}/>
+            <AppRoute
+              path="/app/view-subscribtion/:id"
+              component={Viewsubscribtion}
+            />
             <AppRoute path="/app/assets/AsstesList" component={AssetList} />
             <AppRoute
               path="/managedeathcirtificate"

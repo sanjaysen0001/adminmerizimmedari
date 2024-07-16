@@ -69,65 +69,65 @@ class TransactionReport extends React.Component {
       },
       {
         headerName: "Transaction Date",
-        field: "userphonenumber",
+        field: "subcriptionDate",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.subcriptionDate}</div>;
         },
       },
-      {
-        headerName: "Description",
-        field: "description",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return <div className=""></div>;
-        },
-      },
+      // {
+      //   headerName: "Description",
+      //   field: "description",
+      //   filter: true,
+      //   width: 200,
+      //   cellRendererFramework: (params) => {
+      //     return <div className=""></div>;
+      //   },
+      // },
       {
         headerName: "Service Period",
-        field: "serviceperiod",
+        field: "planType",
         filter: true,
         width: 220,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.planId?.planType}</div>;
         },
       },
       {
         headerName: "Subscription plan",
-        field: "subscriptionplan",
+        field: "subcriptionStatus",
         filter: true,
         width: 220,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.subcriptionStatus}</div>;
         },
       },
-      {
-        headerName: "Payment method",
-        field: "paymentmethod",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return <div className=""></div>;
-        },
-      },
-      {
-        headerName: "Subtotal",
-        field: "subtotal",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return <div className=""></div>;
-        },
-      },
+      // {
+      //   headerName: "Payment method",
+      //   field: "paymentmethod",
+      //   filter: true,
+      //   width: 200,
+      //   cellRendererFramework: (params) => {
+      //     return <div className="">{params?.data?.planId?.planType}</div>;
+      //   },
+      // },
+      // {
+      //   headerName: "Subtotal",
+      //   field: "subtotal",
+      //   filter: true,
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return <div className="">{params?.data?.planId?.price} </div>;
+      //   },
+      // },
       {
         headerName: "Total",
         field: "total",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.planId?.price}</div>;
         },
       },
       {

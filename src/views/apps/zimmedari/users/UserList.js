@@ -78,18 +78,18 @@ class UserList extends React.Component {
 
       {
         headerName: "User ID",
-        field: "_id",
+        field: "id",
         filter: true,
-        width: 240,
+        width: 120,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?._id}</div>;
+          return <div className="">{params?.data?.id}</div>;
         },
       },
       {
         headerName: "User Name",
         field: "firstName",
         filter: true,
-        width: 150,
+        width: 140,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.firstName}</div>;
         },

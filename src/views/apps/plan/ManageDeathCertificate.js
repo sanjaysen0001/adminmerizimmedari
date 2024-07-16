@@ -63,11 +63,15 @@ class Duelifedeclaration extends React.Component {
 
       {
         headerName: "Death Certificate Validation Status",
-        field: "userStatus",
+        field: "deadCertificateValidationStatus",
         width: 350,
 
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.userStatus}</div>;
+          return (
+            <div className="">
+              {params?.data?.deadCertificateValidationStatus}
+            </div>
+          );
         },
       },
 
