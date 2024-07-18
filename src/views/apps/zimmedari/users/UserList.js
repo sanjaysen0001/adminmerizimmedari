@@ -165,7 +165,7 @@ class UserList extends React.Component {
         filter: true,
         width: 190,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          return <div className="">{params?.data?.planId?.planType}</div>;
         },
       },
       {

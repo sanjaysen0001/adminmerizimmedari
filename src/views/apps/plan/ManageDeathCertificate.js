@@ -10,20 +10,30 @@ import {
   DropdownItem,
   DropdownToggle,
   UncontrolledDropdown,
+  CustomInput,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Label,
 } from "reactstrap";
 import { saveAs } from "file-saver";
 import { AgGridReact } from "ag-grid-react";
 import axiosConfig from "../../../axiosConfig";
-import { ChevronDown } from "react-feather";
+import { ChevronDown, ChevronLeft } from "react-feather";
 import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
-import { BsUpload } from "react-icons/bs";
-import { BsDownload } from "react-icons/bs";
+import { BsUpload, BsDownload } from "react-icons/bs";
+
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
     url: "",
+    modal: false,
+    pdfUrl: null,
+    pdfView: false,
+    switchState: false,
     fileType: null,
     paginationPageSize: 20,
     currenPageSize: "",
@@ -42,12 +52,10 @@ class Duelifedeclaration extends React.Component {
         width: 100,
         filter: true,
       },
-
       {
         headerName: "Phone Number",
         field: "userId.mobileNo",
         width: 190,
-
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.userId.mobileNo}</div>;
         },
@@ -60,12 +68,25 @@ class Duelifedeclaration extends React.Component {
           return <div className="">{params?.data?.userId.firstName}</div>;
         },
       },
-
+      {
+        headerName: "Change Death certificate Status",
+        field: "DateofResponse",
+        width: 350,
+        cellRendererFramework: (params) => {
+          return (
+            <Button
+              color="primary"
+              onClick={() => this.toggle(params.data._id)}
+            >
+              Change Status
+            </Button>
+          );
+        },
+      },
       {
         headerName: "Death Certificate Validation Status",
         field: "deadCertificateValidationStatus",
         width: 350,
-
         cellRendererFramework: (params) => {
           return (
             <div className="">
@@ -74,23 +95,38 @@ class Duelifedeclaration extends React.Component {
           );
         },
       },
-
       {
-        headerName: "Policy View",
-        field: "PolicyView",
+        headerName: "PDF View",
+        field: "certificate",
         width: 250,
         height: 200,
         cellRendererFramework: (params) => {
+          return (
+            // <embed
+            //   src={
+            //     "https://face-auth.merizimmedari.com/Images/" +
+            //     params?.data?.certificate
+            //   }
+            //   type="application/pdf"
+            //   width="100%"
+            //   height="600px"
+            // />
+
+            <Button
+              color="primary"
+              onClick={() => this.toggleFile(params?.data?.certificate)}
+            >
+              View PDF
+            </Button>
+          );
           let fileName = params?.data?.certificate;
+          console.log("test", fileName);
           let extentionName = fileName?.slice(
             ((fileName?.lastIndexOf(".") - 1) >>> 0) + 2
           );
           if (extentionName === "pdf")
             return (
               <div className="" style={{ width: "100%", textAlign: "center" }}>
-                {/* <a href={params.data.certificate} target="_blank">
-                  View PDF
-                </a> */}
                 <embed
                   src={params.data.certificate}
                   type="application/pdf"
@@ -108,133 +144,62 @@ class Duelifedeclaration extends React.Component {
           } else {
             return <>Unknown File</>;
           }
-          // let url = `https://face-auth.merizimmedari.com/Images/${params?.data?.certificate}`;
-          // let url = params.data.certificate;
-          // const file = params.data.certificate;
-          // if (file.type === "pdf") {
-          //   return (
-          //     <a href={file.name} target="_blank">
-          //       View PDF
-          //     </a>
-          //   );
-          // } else if (file.type === "txt") {
-          //   return (
-          //     <a href={file.name} target="_blank">
-          //       View Text
-          //     </a>
-          //   );
-          // } else if (file.type.includes("image")) {
-          //   return (
-          //     <img
-          //       src={file.name}
-          //       alt="Image"
-          //       style={{ width: "100px", height: "100px" }}
-          //     />
-          //   );
-          // } else {
-          //   return "Unsupported file type";
-          // }
-          // fetch(url)
-          //   .then((response) => {
-          //     const contentType = response.headers.get("content-type");
-          //     if (contentType.includes("text/plain")) {
-          //       this.setState({ fileType: "text" });
-          //     } else if (contentType.includes("image")) {
-          //       this.setState({ fileType: "image" });
-          //     } else if (contentType.includes("application/pdf")) {
-          //       this.setState({ fileType: "pdf" });
-          //     } else {
-          //       this.setState({ fileType: "unknown" });
-          //     }
-          //   })
-          //   .catch((error) => {
-          //     console.error("Error fetching URL:", error);
-          //     this.setState({ fileType: "unknown" });
-          //   });
-
-          // return (
-          //   <div className="">
-          //     {this.state.fileType === "text" && (
-          //       <p>Render your text component here</p>
-          //     )}
-          //     {this.state.fileType === "image" && (
-          //       <img src={url} alt="Fetched Image" />
-          //     )}
-          //     {this.state.fileType === "pdf" && (
-          //       <embed
-          //         src={url}
-          //         type="application/pdf"
-          //         width="100%"
-          //         height="600px"
-          //       />
-          //     )}
-          //     {this.state.fileType === "unknown" && (
-          //       <p>File type not supported</p>
-          //     )}
-          //     {/* <img src={url} alt="image" height={35} width={45} /> */}
-          //   </div>
-          // );
         },
       },
-
       {
         headerName: "Actions",
-        field: "sortorder",
+        // field: "sortorder",
         width: 200,
         cellRendererFramework: (params) => {
           const downloadImage = async () => {
-            const pdfUrl = params?.data?.certificate;
-            // let fileName = params?.data?.certificate;
-            // let extentionName = fileName?.slice(
-            //   ((fileName?.lastIndexOf(".") - 1) >>> 0) + 2
-            // );
-            // if (extentionName == "pdf") {
-            try {
-              const response = await fetch(pdfUrl);
+            let url = `https://face-auth.merizimmedari.com/Images/${params?.data?.certificate}`;
 
+            try {
+              const response = await fetch(url);
               if (!response.ok) {
-                throw new Error("Failed to download PDF");
+                throw new Error(`HTTP error! Status: ${response.status}`);
               }
 
               const blob = await response.blob();
-              saveAs(blob, "downloaded.pdf");
+
+              // Create a temporary anchor element
+              const link = document.createElement("a");
+              link.href = window.URL.createObjectURL(blob);
+              link.download = "downloadedfile.pdf";
+
+              // Append the anchor element to the body
+              document.body.appendChild(link);
+
+              // Click the download link programmatically
+              link.click();
+
+              // Clean up: remove the anchor element and revoke the object URL
+              document.body.removeChild(link);
+              window.URL.revokeObjectURL(link.href);
             } catch (error) {
-              console.error("Error downloading PDF:", error);
-              // Display a user-friendly error message
-              alert("Failed to download PDF. Please try again later.");
+              console.error("Error downloading the PDF", error);
             }
-            // }
-            // else if (extentionName == "image") {
-            //   if (!pdfUrl) {
-            //     console.error("Image URL is not available.");
-            //     return;
-            //   }
-            //   const link = document.createElement("a");
-            //   link.href = pdfUrl;
-            //   link.download = "image.jpg";
-            //   link.click();
-            // }
           };
 
           const handleFileUpload = (event) => {
             const file = event.target.files[0];
+            console.log(file);
             if (!file) {
               return;
             }
-
             const id = params?.data?._id;
             const formData = new FormData();
             formData.append("image", file);
+
             axiosConfig
               .put(`/life-declaration/upload-certificate/${id}`, formData)
               .then((response) => {
                 console.log(response);
-                swal("success", "Added Sucessfully", "success");
+                swal("Success", "Added Successfully", "success");
                 this.AssetList();
               })
               .catch((error) => {
-                swal("error", "error Occured", "error");
-
+                swal("Error", "PDf Not upload", "error");
                 console.log(error);
               });
           };
@@ -249,22 +214,38 @@ class Duelifedeclaration extends React.Component {
                 />
                 <BsUpload />
               </label>
-              <button
+
+              <a
+                href
                 type="download"
                 className="btn w-25"
                 onClick={downloadImage}
               >
                 <BsDownload />
-              </button>
+              </a>
             </div>
           );
         },
       },
     ],
   };
+
   componentDidMount() {
     this.AssetList();
   }
+  toggle = (id) => {
+    this.setState({ uniqueId: id });
+    this.setState((prevState) => ({ modal: !prevState.modal }));
+  };
+  toggleFile = (url) => {
+    console.log(url);
+    let pdfURL = "https://face-auth.merizimmedari.com/Images/" + url;
+
+    this.setState({
+      pdfUrl: pdfURL,
+    });
+    this.setState((prevState) => ({ pdfView: !prevState.pdfView }));
+  };
   AssetList = () => {
     axiosConfig
       .get("/life-declaration/view-user-status")
@@ -277,12 +258,26 @@ class Duelifedeclaration extends React.Component {
         swal("Something Went Wrong");
       });
   };
+  toggleSwitch = () => {
+    const payload = {
+      deadCertificateValidationStatus: this.state.validation,
+    };
+    axiosConfig
+      .put(`/life-declaration/update-status/${this.state.uniqueId}`, payload)
+      .then((response) => {
+        swal("Validation Successfully");
+        this.toggle();
+      })
+      .catch((err) => {
+        swal("Validation did not change");
+        console.log(err);
+      });
+  };
 
   runthisfunction(id) {
     swal(
       `Do You Want To Delete Permanently`,
       "This item will be deleted immediately",
-
       {
         buttons: {
           cancel: "Cancel",
@@ -303,6 +298,7 @@ class Duelifedeclaration extends React.Component {
       }
     });
   }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -335,7 +331,7 @@ class Duelifedeclaration extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Manage Death Cirtificate
+                Manage Death Certificate
               </h1>
             </Col>
             <Col className=""></Col>
@@ -389,7 +385,7 @@ class Duelifedeclaration extends React.Component {
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>
-                  <div className="d-flex flex-wrap  mb-1">
+                  <div className="d-flex flex-wrap mb-1">
                     <div className="table-input mr-1">
                       <Input
                         className="cssformanageassetinput cssmartopmargin"
@@ -433,8 +429,59 @@ class Duelifedeclaration extends React.Component {
             )}
           </CardBody>
         </Card>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>
+            Change Death Certificate Status
+          </ModalHeader>
+          <ModalBody>
+            <Col lg="12" md="12" sm="12" className="mb-2">
+              <Label>Verify Death Certificate</Label>
+              <CustomInput
+                type="select"
+                name="validation"
+                value={this.state.validation}
+                onChange={(e) => {
+                  this.setState({ validation: e.target.value });
+                }}
+              >
+                <option value="">Select Status </option>
+                <option value="Valid">Valid</option>
+                <option value="Invalid">Invalid</option>
+              </CustomInput>
+            </Col>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggleSwitch}>
+              Submit
+            </Button>{" "}
+            <Button color="secondary" onClick={this.toggle}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+        <Modal isOpen={this.state.pdfView} toggle={this.toggleFile}>
+          <ModalHeader toggle={this.toggleFile}>
+            Change Death Certificate Status
+          </ModalHeader>
+          <ModalBody>
+            <Row>
+              <Col lg="12" md="12" sm="12" className="mb-2">
+                <Label>View Death Certificate</Label>
+                {this.state.pdfUrl && (
+                  <embed
+                    src={this.state.pdfUrl}
+                    type="application/pdf"
+                    width="100%"
+                    height="600px"
+                  />
+                )}
+              </Col>
+            </Row>
+          </ModalBody>
+        </Modal>
       </React.Fragment>
     );
   }
 }
+
 export default Duelifedeclaration;

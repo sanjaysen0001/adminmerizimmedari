@@ -27,7 +27,8 @@ import ReactHtmlParser from "react-html-parser";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
-    switchState: false,
+
+    deadCertificateValidationStatus: "",
     isCheck: false,
     paginationPageSize: 20,
     currenPageSize: "",
@@ -49,7 +50,7 @@ class Duelifedeclaration extends React.Component {
       },
       {
         headerName: "User Phone Number",
-        field: "UserPhoneNumber",
+        field: "mobileNo",
         width: 200,
 
         cellRendererFramework: (params) => {
@@ -71,22 +72,25 @@ class Duelifedeclaration extends React.Component {
         width: 350,
 
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.nextDeclarationDate}</div>;
+          let updatedDate = this.getDateThreeDaysLater(
+            params?.data?.lastDeclarationDate
+          );
+          return <div className="">{updatedDate}</div>;
         },
       },
       {
         headerName:
           "Last Life declaration on due date offerted to Nominee/User",
         field: "Lifedeclarationduedate",
-        width: 350,
+        width: 400,
 
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.lastDeclarationDate}</div>;
         },
       },
       {
-        headerName: "Date of User Status Confirmation mail shared with nominee",
-        field: "Lifedeclarationduedate",
+        headerName: "DateOfUser StatusConfirmation mailshared with nominee",
+        field: "dateOfUserStatusConfirmationMailNominee",
         width: 400,
 
         cellRendererFramework: (params) => {
@@ -99,7 +103,7 @@ class Duelifedeclaration extends React.Component {
       },
       {
         headerName: "Date of Response Reveived from nominee",
-        field: "DateofResponse",
+        field: "dateOfResponseReceivedNominee",
         width: 400,
 
         cellRendererFramework: (params) => {
@@ -111,104 +115,112 @@ class Duelifedeclaration extends React.Component {
         },
       },
       {
-        headerName: "Response Reveived from nominee",
-        field: "DateofResponse",
+        headerName: "Response Received from nominee",
+        field: "userStatus",
         width: 350,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return <div className="">{params?.data?.userStatus}</div>;
         },
       },
       {
         headerName:
-          "Date of death certificate requesting mail shared with nominee",
-        field: "DateofResponse",
+          "DateOfDeath certificate requesting mail shared with nominee",
+        field: "dateOfDeadCertificateRequestingMailNominee",
         width: 350,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
-        },
-      },
-      {
-        headerName: "Date of death certificate received from nominee",
-        field: "DateofResponse",
-        width: 400,
-        cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
-        },
-      },
-      {
-        headerName: "Death certificate Validation Status",
-        field: "DateofResponse",
-        width: 350,
-
-        cellRendererFramework: (params) => {
-          console.log(params.data);
           return (
-            <CustomInput
-              type="switch"
-              id={params.data._id}
-              name="item_name"
-              label=""
-              inline
-              // checked={this.state.switchState}
-              checked={params.data.deadCertificateValidationStatus}
-              // onChange={(event) => this.toggleSwitch(event.target.checked)}
-              onChange={(event) =>
-                this.toggleSwitch(event.target.checked, params.data._id)
-              }
-            />
-            // <div className="">
-            //   <CustomInput
-            //     type="switch"
-            //     id={params.data._id}
-            //     title="Invalid"
-            //     name="item_name"
-            //     // value={this.state.item_name}
-            //     // onChange={this.changeHandler}
-            //     label=""
-            //     // name="switchState"
-            //     // checked={this.state.switchState} // Set the checked property based on switchState
-            //     // onChange={this.toggleSwitch} // Call toggleSwitch function on change
-            //     inline
-            //   />
-            // </div>
+            <div className="">
+              {params?.data?.dateOfDeadCertificateRequestingMailNominee}
+            </div>
           );
         },
       },
       {
-        headerName: "Date of Validation Status mail shared with nominee",
-        field: "DateofResponse",
+        headerName: "Date of death certificate received from nominee",
+        field: "dateOfDeadCertificateReceivedNominee",
+        width: 450,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="">
+              {params?.data?.dateOfDeadCertificateReceivedNominee}
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Death certificate Validation Status",
+        field: "deadCertificateValidationStatus",
         width: 400,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return (
+            <div className="">
+              {params?.data?.deadCertificateValidationStatus}
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Date of Validation Status mail shared with nominee",
+        field: "dateOfValidationStatusMailNominee",
+        width: 400,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="">
+              {params?.data?.dateOfValidationStatusMailNominee}
+            </div>
+          );
         },
       },
       {
         headerName: "Date of asset details shared with nominee",
-        field: "DateofResponse",
+        field: "dateOfAssetDetailNominee",
         width: 350,
         cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
+          return (
+            <div className="">{params?.data?.dateOfAssetDetailNominee}</div>
+          );
         },
       },
-      {
-        headerName:
-          "Date of receiving of asset details receiving confirmation from nominee",
-        field: "DateofResponse",
-        width: 350,
-        cellRendererFramework: (params) => {
-          return <div className="">{params?.data?.lastDeclarationDate}</div>;
-        },
-      },
+      // {
+      //   headerName:
+      //     "Date of receiving of asset details receiving confirmation from nominee",
+      //   field: "DateofResponse",
+      //   width: 350,
+      //   cellRendererFramework: (params) => {
+      //     // return <div className="">{params?.data?.lastDeclarationDate}</div>;
+      //   },
+      // },
       {
         headerName: "Loop Status",
         field: "DateofResponse",
         width: 350,
         cellRendererFramework: (params) => {
-          return <div className=""></div>;
+          // params.data?.userStatus
+
+          return (
+            <div className="">
+              {params.data?.userStatus?.toLowerCase() == "demise"
+                ? ""
+                : "Alive" &&
+                  params?.data?.deadCertificateValidationStatus?.toLowerCase() ==
+                    "valid"
+                ? "Close"
+                : params?.data?.deadCertificateValidationStatus?.toLowerCase() ==
+                  "invalid"
+                ? "Open"
+                : "Close"}
+            </div>
+          );
         },
       },
 
       // {
+      // {params?.data?.deadCertificateValidationStatus
+      //         .toLowerCase()
+      //         .includes("valid")
+      //         ? "Close"
+      //         : "Open"}
       //   headerName: "Actions",
       //   field: "sortorder",
       //   width: 200,
@@ -277,6 +289,12 @@ class Duelifedeclaration extends React.Component {
       });
   };
 
+  getDateThreeDaysLater = (dateString) => {
+    const startDate = new Date(dateString);
+    startDate.setDate(startDate.getDate() + 3);
+    return startDate.toISOString().split("T")[0];
+  };
+
   runthisfunction(id) {
     swal(
       `Do You Want To Delete Permanently`,
@@ -318,17 +336,39 @@ class Duelifedeclaration extends React.Component {
   //     switchState: newState,
   //   });
   // };
-  toggleSwitch = (newState, id) => {
-    console.log(newState);
-    this.setState({
-      switchState: newState,
-    });
-    // Update your rowData with the new state for the corresponding row
-    // const updatedRowData = this.state.rowData.map((row) =>
-    //   row._id === id ? { ...row, switchState: newState } : row
-    // );
-    // this.setState({ rowData: updatedRowData });
-  };
+  // toggleSwitch = (newState, id) => {
+  //   console.log(newState, id);
+  //   debugger;
+  //   let ab = "";
+  //   if (newState) {
+  //     ab = "Valid";
+  //     this.setState({ deadCertificateValidationStatus: "Valid" });
+  //   } else {
+  //      ab = "Invalid";
+  //     this.setState({ deadCertificateValidationStatus: "Invalid" });
+  //   }
+  //   // console.log(newState);
+  //   this.setState({
+  //     switchState: newState,
+  //   });
+
+  //   const payload = {
+  //     deadCertificateValidationStatus:
+  //       this.state.deadCertificateValidationStatus,
+  //   };
+  //   debugger;
+  //   axiosConfig
+  //     .put(`/life-declaration/update-status/${id}`, payload)
+
+  //     .then((response) => {
+  //       debugger;
+  //       console.log(response);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
   updateSearchQuery = (val) => {
     this.gridApi.setQuickFilter(val);
   };
