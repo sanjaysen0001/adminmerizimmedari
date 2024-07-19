@@ -24,6 +24,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import swal from "sweetalert";
 import ReactHtmlParser from "react-html-parser";
+import moment from "moment";
 class Duelifedeclaration extends React.Component {
   state = {
     rowData: [],
@@ -79,9 +80,8 @@ class Duelifedeclaration extends React.Component {
         },
       },
       {
-        headerName:
-          "Last Life declaration on due date offerted to Nominee/User",
-        field: "Lifedeclarationduedate",
+        headerName: "LastLifeDeclaration on DueDate Offerted to Nominee/User",
+        field: "lastDeclarationDate",
         width: 400,
 
         cellRendererFramework: (params) => {
@@ -102,7 +102,7 @@ class Duelifedeclaration extends React.Component {
         },
       },
       {
-        headerName: "Date of Response Reveived from nominee",
+        headerName: "Date of ResponseReveived from nominee",
         field: "dateOfResponseReceivedNominee",
         width: 400,
 
@@ -123,8 +123,7 @@ class Duelifedeclaration extends React.Component {
         },
       },
       {
-        headerName:
-          "DateOfDeath certificate requesting mail shared with nominee",
+        headerName: "DateOfDeath certificate RequestingMail SharedwithNominee",
         field: "dateOfDeadCertificateRequestingMailNominee",
         width: 350,
         cellRendererFramework: (params) => {
@@ -167,7 +166,9 @@ class Duelifedeclaration extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="">
-              {params?.data?.dateOfValidationStatusMailNominee}
+              {moment(params.data.dateOfValidationStatusMailNominee).format(
+                "ll"
+              )}
             </div>
           );
         },
@@ -178,7 +179,9 @@ class Duelifedeclaration extends React.Component {
         width: 350,
         cellRendererFramework: (params) => {
           return (
-            <div className="">{params?.data?.dateOfAssetDetailNominee}</div>
+            <div className="">
+              {moment(params.data.dateOfAssetDetailNominee).format("ll")}
+            </div>
           );
         },
       },
@@ -194,7 +197,7 @@ class Duelifedeclaration extends React.Component {
       {
         headerName: "Loop Status",
         field: "DateofResponse",
-        width: 350,
+        width: 180,
         cellRendererFramework: (params) => {
           // params.data?.userStatus
 

@@ -11,7 +11,6 @@ const Listfaq = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [listData, setListData] = useState([]);
   const [listAllData, setListALLData] = useState([]);
-  // const [result, setResult] = useState([]);
   const [id, setID] = useState("");
   const history = useHistory();
   const handleClose = () => setShow(false);
@@ -24,14 +23,11 @@ const Listfaq = () => {
     termsList();
   }, []);
   const termsList = () => {
-    // debugger;
     axiosConfig
       .get("/term/view-faq")
       .then(function (response) {
         setListData(response.data.FAQ);
         setListALLData(response.data.FAQ);
-        console.log(response.data);
-        console.log(response.data.FAQ)
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +56,6 @@ const Listfaq = () => {
       .then(function (response) {
         termsList();
         setShow(false);
-        console.log(response.data.message);
       })
       .catch((error) => {
         console.log(error);
@@ -68,7 +63,7 @@ const Listfaq = () => {
   };
 
   const handleAdd = () => {
-    history.push("/AddFaq"); 
+    history.push("/AddFaq");
   };
   const handleEdit = (id) => {
     history.push(`/Editfaq/${id}`);
@@ -159,10 +154,6 @@ const Listfaq = () => {
                   >
                     <div>
                       <span style={{ marginLeft: "10px" }}>
-                        {/* <Link
-                          to={""}
-                          style={{ textDecoration: "none", color: "black" }}
-                        > */}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           color="#2966ac"

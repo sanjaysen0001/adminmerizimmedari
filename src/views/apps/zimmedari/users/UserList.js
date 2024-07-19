@@ -10,6 +10,7 @@ import {
   DropdownItem,
   DropdownToggle,
   UncontrolledDropdown,
+  Spinner,
 } from "reactstrap";
 // import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
@@ -89,7 +90,7 @@ class UserList extends React.Component {
         headerName: "User Name",
         field: "firstName",
         filter: true,
-        width: 140,
+        width: 200,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.firstName}</div>;
         },
@@ -134,7 +135,7 @@ class UserList extends React.Component {
         headerName: "Email Status",
         field: "mailVerifyStatus",
         filter: true,
-        width: 150,
+        width: 180,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.mailVerifyStatus}</div>;
         },
@@ -143,7 +144,7 @@ class UserList extends React.Component {
         headerName: "Registration Date",
         field: "registeration",
         filter: true,
-        width: 190,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="">{params?.data?.createdAt.split("T")[0]}</div>
@@ -154,7 +155,7 @@ class UserList extends React.Component {
         headerName: "Subscription Status",
         field: "Subscription",
         filter: true,
-        width: 230,
+        width: 220,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.subcriptionStatus}</div>;
         },
@@ -190,7 +191,7 @@ class UserList extends React.Component {
         headerName: "No. Of Total Asset Added",
         field: "noOfTotalAssets",
         filter: true,
-        width: 230,
+        width: 250,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.noOfTotalAssets}</div>;
         },
@@ -199,7 +200,7 @@ class UserList extends React.Component {
         headerName: "No.Of Confidential Note Added",
         field: "noOfConfidentialNote",
         filter: true,
-        width: 250,
+        width: 300,
         cellRendererFramework: (params) => {
           return <div className="">{params?.data?.noOfConfidentialNote}</div>;
         },
@@ -274,8 +275,8 @@ class UserList extends React.Component {
 
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
-    return (
-      <React.Fragment>
+    return this.state.rowData.length > 0 ? (
+      <>
         <Card className="overflow-hidden agGrid-card">
           <Row className="m-1">
             <Col>
@@ -387,7 +388,11 @@ class UserList extends React.Component {
             )}
           </CardBody>
         </Card>
-      </React.Fragment>
+      </>
+    ) : (
+      <Spinner className="loader" color="primary">
+        Loading...
+      </Spinner>
     );
   }
 }
